@@ -1,0 +1,7 @@
+<div class='challenge-description'>
+  <h1><%= @challenge.title %></h1>
+  <h6>Temps total : <%= @challenge.total_time %> jours.</h6>
+  <h6>Il te reste <%= @time_left %> jours de challenge, courage !</h6>
+  <p><%= @challenge.description %></p>
+  <p><%= @users.map { |user| user.name} %></p>
+</div>
