@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Participation.destroy_all
+# User.destroy_all
+# Challenge.destroy_all
+
+# challenge = Challenge.create( title: "Bouge ton boul'", description: "Trois semaines de pur bonheur (et de squat 1x/jours...) !
+# Bon courage les filles !", frequency: 'quotidien', start_date: 20220515, end_date: 20220615, points: 531, total_time: 31)
+
+# user1 = User.create(email: 'bouh@bouh.fr', password: 'Bouhbouh', name: 'Bouh',
+#             description: 'bouhbouhbouh bouh bouhbouh bouh bouh', total_points: 685)
+# user2 = User.create(email: 'flo@flo.fr', password: 'floflo', name: 'flo',
+#             description: 'flofloflo flo floflo flo flo', total_points: 685)
+# user3 = User.create(email: 'julie@julie.fr', password: 'juliejulie', name: 'julie',
+#             description: 'juliejuliejulie julie juliejulie julie julie', total_points: 685)
+
+# part1 = Participation.create(challenge: challenge, user: user1)
+# part2 = Participation.create(challenge: challenge, user: user2)
+# part3 = Participation.create(challenge: challenge, user: user3)
