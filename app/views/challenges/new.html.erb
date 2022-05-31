@@ -6,7 +6,7 @@
         <%= simple_form_for(@challenge) do |f| %>
             <%= f.input :title,
                         label: "Choisis un titre",
-                        autofocus: true%>
+                        autofocus: true %>
             <%= f.input :description,
             label: "Décris au mieux ton challenge:" %>
             <%= f.input :start_date, as: :date, html5: true,
@@ -21,7 +21,7 @@
             <%= f.input :photo,
             label: "Tu peux ajouter une photo ici:",
             as: :file %>
-            <%= f.submit "Enregistrer ce challenge", redirect_to ,class: "btn btn btn-ghost pt-2 px-3 border-2 w-40" %>
+            <%= f.submit "Enregistrer ce challenge", class: "btn btn btn-ghost pt-2 px-3 border-2 w-40" %>
       <% end %>
       </div>
     </div>

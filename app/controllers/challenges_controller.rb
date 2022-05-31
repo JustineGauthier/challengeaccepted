@@ -18,26 +18,19 @@ class ChallengesController < ApplicationController
 
   def create
     @challenge = Challenge.new(challenge_params)
-    @user = current_user
-    @challenge.user = @user
     if @challenge.save
-      @challenge.total_time = (@challenge.end_date - @challenge.start_date)
-      @challenge.save
-      redirect_to users_path
+      # @challenge.total_time = (@challenge.end_date - @challenge.start_date)
+      # @challenge.save
+      redirect_to challenge_path(@challenge)
     else
-      render 'challenge'
+      render :show
     end
   end
-
-  def destroy
-    @challenge = Challenge.find(params[:id])
-    @challenge.destroy
-    redirect_to users_path
 
   private
 
   def challenge_params
-    params.require(:challenge).permit(:start_date, :end_date, :title, :description, :frequency, :points)
+    params.require(:challenge).permit(:start_date, :end_date, :title, :description, :frequency)
   end
 
   def set_challenge

@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
 Progression.destroy_all
 Participation.destroy_all
 User.destroy_all
@@ -28,4 +27,3 @@ part3 = Participation.create(challenge: challenge, user: user3)
 Progression.create(participation: part1)
 Progression.create(participation: part2)
 Progression.create(participation: part3)
-
