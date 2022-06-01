@@ -13,9 +13,11 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+    <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(root_path) %>
+      <%= render 'shared/home-button' %>
+    <% end %>
   </body>
 </html>
