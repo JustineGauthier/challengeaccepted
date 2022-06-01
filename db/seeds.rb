@@ -11,7 +11,7 @@ User.destroy_all
 Challenge.destroy_all
 
 challenge = Challenge.create( title: "Bouge ton boul'", description: "Trois semaines de pur bonheur (et de squat 1x/jours...) !
-Bon courage les filles !", frequency: 'quotidien', start_date: 20220515, end_date: 20220615, points: 531, total_time: 31)
+Bon courage les filles !", frequency: 'quotidien', start_date: 20220515, end_date: 20220513, points: 531, total_time: 31)
 
 user1 = User.create(email: 'bouh@bouh.fr', password: 'Bouhbouh', name: 'Bouh',
             description: 'bouhbouhbouh bouh bouhbouh bouh bouh', total_points: 685)
@@ -24,6 +24,17 @@ part1 = Participation.create(challenge: challenge, user: user1)
 part2 = Participation.create(challenge: challenge, user: user2)
 part3 = Participation.create(challenge: challenge, user: user3)
 
-Progression.create(participation: part1)
-Progression.create(participation: part2)
-Progression.create(participation: part3)
+Progression.create(date: 20220515, done: true, participation: part1)
+Progression.create(date: 20220516, done: true, participation: part1)
+Progression.create(date: 20220517, done: false, participation: part1)
+Progression.create(date: 20220518, done: true, participation: part1)
+
+Progression.create(date: 20220515, done: true, participation: part2)
+Progression.create(date: 20220516, done: true, participation: part2)
+Progression.create(date: 20220517, done: true, participation: part2)
+Progression.create(date: 20220518, done: true, participation: part2)
+
+Progression.create(date: 20220515, done: false, participation: part3)
+Progression.create(date: 20220516, done: true, participation: part3)
+Progression.create(date: 20220517, done: false, participation: part3)
+Progression.create(date: 20220518, done: true, participation: part3)
