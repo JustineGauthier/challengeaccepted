@@ -1,18 +1,22 @@
 import { Controller } from "stimulus"
+import { csrfToken } from "@rails/ujs"
 
 export default class extends Controller {
   static targets = ["card"]
+  static values = {
+    updateUrl: String
+  }
 
   validate(event) {
     event.preventDefault()
-    fetch(`http://localhost:3000/participations/progressions/${progression.id}`, {
-      method: "PATCH",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({"done": true})
+    fetch(this.updateUrlValue, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": csrfToken()
+        }
     })
-      .then(response => response.json())
-      .then((data) => {
-      })
-    this.cardTarget.remove();
+      .then(response => {
+        this.cardTarget.remove();
+      } )
   }
 }
