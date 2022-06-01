@@ -7,7 +7,6 @@ class ChallengesController < ApplicationController
     @time_left = (end_date - now).to_i
     @participations = @challenge.participations
     @users = @participations.map(&:user)
-    @progressions = @participations.map(&:progressions)
   end
 
   private

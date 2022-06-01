@@ -26,7 +26,7 @@ part3 = Participation.create(challenge: challenge, user: user3)
 
 Progression.create(date: 20220515, done: true, participation: part1)
 Progression.create(date: 20220516, done: true, participation: part1)
-Progression.create(date: 20220517, done: true, participation: part1)
+Progression.create(date: 20220517, done: false, participation: part1)
 Progression.create(date: 20220518, done: true, participation: part1)
 
 Progression.create(date: 20220515, done: true, participation: part2)
@@ -34,7 +34,7 @@ Progression.create(date: 20220516, done: true, participation: part2)
 Progression.create(date: 20220517, done: true, participation: part2)
 Progression.create(date: 20220518, done: true, participation: part2)
 
-Progression.create(date: 20220515, done: true, participation: part3)
+Progression.create(date: 20220515, done: false, participation: part3)
 Progression.create(date: 20220516, done: true, participation: part3)
-Progression.create(date: 20220517, done: true, participation: part3)
+Progression.create(date: 20220517, done: false, participation: part3)
 Progression.create(date: 20220518, done: true, participation: part3)
