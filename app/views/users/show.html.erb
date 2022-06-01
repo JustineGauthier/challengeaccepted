@@ -17,14 +17,18 @@
     <ul>
       <% @challenges.each do |challenge| %>
         <%# <li><img src='<%= cl_image_path user.photo.key, height: 200, width: 200, crop: :fill ' alt="photo de profil"></li> %>
-        <li><%= challenge.title %></li>
-        <% @participations.each do |participation| %>
-          <% participation.progressions.each do |progression| %>
-            <% if progression.done == false && progression.date < Date.tomorrow %>
-            <p>coucou</p>
+        <div data-controller="validate-progression" data-validate-progression-target="card">
+          <li><%= challenge.title %></li>
+          <% @participations.each do |participation| %>
+            <% participation.progressions.each do |progression| %>
+              <% if progression.done == false && progression.date < Date.tomorrow %>
+                <button class="btn btn-primary" data-action="click-> validate-progression#validate">
+                  V
+                </button>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
+        </div>
       <% end %>
     </ul>
   </div>
