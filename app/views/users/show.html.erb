@@ -1,8 +1,12 @@
 <div class="container">
   <div class="w-100 text-center">
     <h1>CHALLENGE ACCEPTED</h1>
-    <div class="d-flex justify-content-center">
-      <%= link_to "Lancer un challenge!", new_challenge_path, class: "btn btn-primary" %>
-    </div>
+      <div>
+        <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %>
+      </div>
+      <br>
+      <div class="d-flex justify-content-center">
+        <%= link_to "Lancer un challenge!", new_challenge_path, class: "btn btn-primary" %>
+      </div>
   </div>
-  </div>
+</div>
