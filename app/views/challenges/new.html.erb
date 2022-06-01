@@ -17,11 +17,10 @@
             <%= f.select :frequency,
             [ 'Quotidien','Hebdomadaire','Unique' ],
             prompt: 'Fais ton choix'%>
-
             <%= f.input :photo,
             label: "Tu peux ajouter une photo ici:",
             as: :file %>
-            <%= f.submit "Enregistrer ce challenge", class: "btn btn btn-ghost pt-2 px-3 border-2 w-40" %>
+            <%= f.submit "Enregistrer ce challenge", class:"btn btn btn-primary" %>
       <% end %>
       </div>
     </div>

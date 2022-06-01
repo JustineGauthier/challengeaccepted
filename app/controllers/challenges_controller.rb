@@ -19,8 +19,8 @@ class ChallengesController < ApplicationController
   def create
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
-      # @challenge.total_time = (@challenge.end_date - @challenge.start_date)
-      # @challenge.save
+      @challenge.total_time = (@challenge.end_date - @challenge.start_date)
+      @challenge.save
       redirect_to challenge_path(@challenge)
     else
       render :show
