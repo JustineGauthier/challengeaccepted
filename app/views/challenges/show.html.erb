@@ -4,6 +4,7 @@ if
     <h6>Ton challenge se déroulera sur <%= @challenge.total_time %> jours.</h6>
     <h6>T'es prêt à tout donner? Il te reste <%= @time_left %> jours pour te challenger !</h6>
     <p>Rappel des règles: <%= @challenge.description %></p>
+                <%= cl_image_tag(@challenge.photo.key, width: 400, height: 300, crop: :fill) %>
     <p>Si t'es prêt, invite tes potes !</p>
     <div data-controller="share" data-share-id-value= <%= @challenge.id%>  data-share-title-value= <%= @challenge.title%>>
       <p class= "btn btn-primary" data-action="click->share#shareLink"> Partage ton lien </p>
