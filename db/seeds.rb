@@ -21,6 +21,7 @@ challenge3 = Challenge.create!(title: "Ratatooooooouille", description: "Ta miss
 végétarien par semaine sur un mois", frequency: 'hebdomadaire', start_date: 20220601, end_date: 20220701, points: 997, total_time: 30)
 
 puts "creating users"
+
 user1 = User.create!(email: 'bouh@bouh.fr', password: 'Bouhbouh', name: 'Bouh',
              total_points: 685)
 user2 = User.create!(email: 'flo@flo.fr', password: 'floflo', name: 'flo',
