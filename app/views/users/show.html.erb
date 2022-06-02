@@ -15,7 +15,6 @@
   <div>
     <% @challenges.each do |challenge| %>
       <% if challenge.end_date > Date.yesterday %>
-        <li><%= cl_image_path @challenge.photo.key, height: 200, width: 200, crop: :fill</li> %>
         <% challenge.participations.each do |participation| %>
           <% participation.progressions.each do |progression| %>
             <% if progression.done == false && progression.date < Date.tomorrow %>

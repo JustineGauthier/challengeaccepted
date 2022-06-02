@@ -6,7 +6,7 @@ if
     <p>Rappel des règles: <%= @challenge.description %></p>
                 <%= cl_image_tag(@challenge.photo.key, width: 400, height: 300, crop: :fill) %>
     <p>Si t'es prêt, invite tes potes !</p>
-    <div data-controller="share" data-share-id-value= <%= @challenge.id%>  data-share-title-value= <%= @challenge.title%>>
+    <div data-controller="share" data-share-id-value= <%= @challenge.id %>  data-share-title-value= <%= @challenge.title %> data-share-creator-value= <%= @creator.name %>>
       <p class= "btn btn-primary" data-action="click->share#shareLink"> Partage ton lien </p>
     </div>
 

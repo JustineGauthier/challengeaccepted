@@ -3,20 +3,19 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static values = {
     id: String,
-    title: String
+    title: String,
+    creator: String
   }
 
   connect() {
   }
 
   shareLink() {
-    console.log(this.titleValue)
-    const url = `http://localhost:3000/challenges/${this.idValue}/join`
-    console.log(url)
+    const url = `https://challenge-accepted-854.herokuapp.com//challenges/${this.idValue}/join`
 
     const options = {
       title: this.titleValue,
-      text: 'Si vous voulez ',
+      text: `${this.creatorValue} t'invite à rejoindre le challenge ${this.titleValue}`,
       url: url,
     }
 
@@ -29,7 +28,5 @@ export default class extends Controller {
       // expected output: ReferenceError: nonExistentFunction is not defined
       // Note - error messages will vary depending on browser
     }
-
-
   }
 }
