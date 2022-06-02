@@ -19,4 +19,9 @@ export default class extends Controller {
         this.cardTarget.remove();
       } )
   }
+
+  nop(event) {
+    event.preventDefault()
+    this.cardTarget.remove();
+  }
 }
