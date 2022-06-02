@@ -6,9 +6,9 @@ class ChallengesController < ApplicationController
   end
 
   def show
-    now = Date.today
+    start_date = @challenge.start_date
     end_date = @challenge.end_date
-    @time_left = (end_date - now).to_i
+    @time_left = (end_date - start_date).to_i
     @participations = @challenge.participations
     @users = @participations.map(&:user)
   end
