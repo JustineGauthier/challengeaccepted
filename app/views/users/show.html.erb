@@ -2,7 +2,11 @@
   <div class="w-100 text-center">
     <h1>CHALLENGE ACCEPTED</h1>
       <div>
-        <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %>
+        <%# <%= cl_image_tag(@user.photo.key, width: 400, height: 300, class: 'avatar', crop: :fill) %> %>
+      </div>
+      <br>
+      <div class="d-flex justify-content-center">
+        <%= link_to "Lancer un challenge!", new_challenge_path, class: "btn btn-primary" %>
       </div>
       <div>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -13,87 +17,28 @@
 <div class='validation_progression'>
   <h2>Tes défis à valider :</h2>
   <div>
-    <% @challenges.each do |challenge| %>
-      <% if challenge.end_date > Date.yesterday %>
-        <% challenge.participations.each do |participation| %>
-          <% participation.progressions.each do |progression| %>
-            <% if progression.done == false && progression.date < Date.tomorrow %>
-              <% if participation.user_id == current_user.id %>
-                <ul>
-                  <div data-controller="validate-progression"
+    <ul>
+      <% @challenges.each do |challenge| %>
+        <%# <%= cl_image_path @challenge.photo.key, height: 200, width: 200, crop: :fill %> %>
+          <% @participations.each do |participation| %>
+            <% participation.progressions.each do |progression| %>
+              <% if progression.done == false && progression.date < Date.tomorrow %>
+                <div data-controller="validate-progression"
                       data-validate-progression-update-url-value="<%= done_progression_path(progression) %>"
                       data-validate-progression-target="card">
-                    <li>
-                      <%= challenge.title %>
-                      <%= progression.date %>
-                    </li>
-                    <button class="btn btn-primary" data-action="click->validate-progression#validate">
-                      V
-                    </button>
-                    <button class="btn btn-primary" data-action="click->validate-progression#nop">
-                      X
-                    </button>
-                  </div>
-                </ul>
+                  <li><%= challenge.title %></li>
+                  <li><%= progression.date %></li>
+                  <button class="btn btn-primary" data-action="click->validate-progression#validate">
+                    V
+                  </button>
+                  <button class="btn btn-primary" data-action="click->validate-progression#nop">
+                    X
+                  </button>
+                </div>
               <% end %>
             <% end %>
           <% end %>
-        <% end %>
       <% end %>
-    <% end %>
+    </ul>
   </div>
-</div>
-
-<div class="d-flex justify-content-center">
-  <%= link_to "Lancer un challenge!", new_challenge_path, class: "btn btn-primary" %>
-</div>
-
-<div>
-  <h2>Tes challenges en cours:</h2>
-  <% @challenges.each do |challenge| %>
-    <ul>
-      <% @participations.each do |participation| %>
-        <% participation.progressions.each do |progression| %>
-          <% @progression_count = 0 %>
-          <% if progression.done %>
-            <% @progression_count += 1 %>
-          <% end %>
-        <% end %>
-      <% end %>
-      <% if challenge.end_date > Date.yesterday %>
-        <li>
-          <%= link_to challenge_path(challenge) do %>
-            <%= cl_image_path @challenge.photo.key, height: 200, width: 200, crop: :fill %>
-            <%= challenge.title %>
-            <p><%= @progression_count%>/<%= challenge.total_time %>jours</p>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-</div>
-
-<div>
-<h2>Tes anciens challenges :</h2>
-  <% @challenges.each do |challenge| %>
-    <ul>
-      <% @participations.each do |participation| %>
-        <% participation.progressions.each do |progression| %>
-          <% @progression_count = 0 %>
-          <% if progression.done %>
-            <% @progression_count += 1 %>
-          <% end %>
-        <% end %>
-      <% end %>
-      <% if challenge.end_date < Date.today %>
-        <li>
-          <%= link_to challenge_path(challenge) do %>
-            <%= cl_image_path @challenge.photo.key, height: 200, width: 200, crop: :fill %>
-            <%= challenge.title %>
-            <p><%= @progression_count%>/<%= challenge.total_time %>jours</p>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
 </div>
