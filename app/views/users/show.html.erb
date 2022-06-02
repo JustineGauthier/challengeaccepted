@@ -2,7 +2,7 @@
   <div class="w-100 text-center">
     <h1>CHALLENGE ACCEPTED</h1>
       <div>
-        <%# <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %> %>
+        <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %>
       </div>
       <br>
       <div class="d-flex justify-content-center">
@@ -19,7 +19,7 @@
   <div>
     <ul>
       <% @challenges.each do |challenge| %>
-        <%# <li><img src='<%= cl_image_path user.photo.key, height: 200, width: 200, crop: :fill ' alt="photo de profil"></li> %>
+        <li><%= cl_image_path @challenge.photo.key, height: 200, width: 200, crop: :fill %></li>
           <% @participations.each do |participation| %>
             <% participation.progressions.each do |progression| %>
               <% if progression.done == false && progression.date < Date.tomorrow %>
