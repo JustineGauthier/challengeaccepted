@@ -6,4 +6,7 @@ Rails.application.routes.draw do
       get :join
     end
   end
+  resources :progressions, only: [] do
+    post :done, on: :member
+  end
 end

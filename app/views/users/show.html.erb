@@ -2,7 +2,7 @@
   <div class="w-100 text-center">
     <h1>CHALLENGE ACCEPTED</h1>
       <div>
-        <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %>
+        <%# <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %> %>
       </div>
       <br>
       <div class="d-flex justify-content-center">
@@ -11,5 +11,31 @@
       <div>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
       </div>
+  </div>
+</div>
+
+<div class='validation_progression'>
+  <h2>Tes défis à valider :</h2>
+  <div>
+    <ul>
+      <% @challenges.each do |challenge| %>
+        <%# <li><img src='<%= cl_image_path user.photo.key, height: 200, width: 200, crop: :fill ' alt="photo de profil"></li> %>
+          <% @participations.each do |participation| %>
+            <% participation.progressions.each do |progression| %>
+              <% if progression.done == false && progression.date < Date.tomorrow %>
+                <div data-controller="validate-progression"
+                      data-validate-progression-update-url-value="<%= done_progression_path(progression) %>"
+                      data-validate-progression-target="card">
+                  <li><%= challenge.title %></li>
+                  <li><%= progression.date %></li>
+                  <button class="btn btn-primary" data-action="click->validate-progression#validate">
+                    V
+                  </button>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+      <% end %>
+    </ul>
   </div>
 </div>

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
+    @participations = @user.participations
+    @challenges = @participations.map(&:challenge)
   end
 
   def new
