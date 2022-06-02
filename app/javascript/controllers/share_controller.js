@@ -10,13 +10,11 @@ export default class extends Controller {
   }
 
   shareLink() {
-    console.log(this.titleValue)
-    const url = `http://localhost:3000/challenges/${this.idValue}/join`
-    console.log(url)
+    const url = `https://challenge-accepted-854.herokuapp.com//challenges/${this.idValue}/join`
 
     const options = {
       title: this.titleValue,
-      text: 'Si vous voulez ',
+      text: 'Viens rejoindre le challenge!',
       url: url,
     }
 
@@ -29,7 +27,5 @@ export default class extends Controller {
       // expected output: ReferenceError: nonExistentFunction is not defined
       // Note - error messages will vary depending on browser
     }
-
-
   }
 }
