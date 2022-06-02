@@ -3,7 +3,8 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static values = {
     id: String,
-    title: String
+    title: String,
+    creator: String
   }
 
   connect() {
@@ -14,7 +15,7 @@ export default class extends Controller {
 
     const options = {
       title: this.titleValue,
-      text: 'Viens rejoindre le challenge!',
+      text: `${this.creatorValue} t'invite à rejoindre le challenge ${this.titleValue}`,
       url: url,
     }
 

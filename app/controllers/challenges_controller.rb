@@ -10,7 +10,9 @@ class ChallengesController < ApplicationController
     end_date = @challenge.end_date
     @time_left = (end_date - start_date).to_i
     @participations = @challenge.participations
+
     @users = @participations.map(&:user)
+    @creator = @challenge.participations.first.user
   end
 
   def new
@@ -21,10 +23,9 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
       @challenge.total_time = (@challenge.end_date - @challenge.start_date)
-      @challenge.save
       user = current_user
-      participation = Participation.new
-      participation.user_id = user
+      participation = Participation.new({user: user, challenge: @challenge })
+      participation.save
       redirect_to challenge_path(@challenge)
     else
       render :show
