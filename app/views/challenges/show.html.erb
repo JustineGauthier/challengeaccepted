@@ -1,9 +1,28 @@
-
 if
     <h1>Le challenge <%= @challenge.title %> est prêt à être lancé !</h1>
     <h6>Ton challenge se déroulera sur <%= @challenge.total_time %> jours.</h6>
-    <h6>T'es prêt à tout donner? Il te reste <%= @time_left %> jours pour te challenger !</h6>
+    <h6>T'es prêt à tout donner? Plus que <%= @time_left %> jours à te challenger !</h6>
     <p>Rappel des règles: <%= @challenge.description %></p>
+    <%= cl_image_tag(@challenge.photo.key, width: 400, height: 300, crop: :fill) %>
+<br>
+
+              <%# Demander si le user actuel veut participer au challenge %>
+<div class="enter-challenge">
+  <div data-controller='enter-challenge'
+    data-enter-challenge-target="card-enter"
+    data-enter-challenge-create-url-value="<%= participations_path %>"
+    data-enter-challenge-user-id-value="<%= current_user.id %>"
+    data-enter-challenge-challenge-id-value="<%= @challenge.id %>">
+    <p>Veux-tu participer à ce challenge ?</p>
+    <button class="btn btn-primary" data-action="click->enter-challenge#accept">
+      V
+    </button>
+    <button class="btn btn-primary" data-action="click->enter-challenge#refuse">
+      X
+    </button>
+  </div>
+</div>
+
                 <%= cl_image_tag(@challenge.photo.key, width: 400, height: 300, crop: :fill) %>
     <p>Si t'es prêt, invite tes potes !</p>
     <div data-controller="share" data-share-id-value= <%= @challenge.id %>  data-share-title-value= <%= @challenge.title %> data-share-creator-value= <%= @creator.name %>>
@@ -14,8 +33,15 @@ if
 
 
 
+  <p>Si t'es prêt, tu peux aussi inviter tes potes !</p>
+  <div data-controller="share" data-share-id-value= <%= @challenge.id %>  data-share-title-value= <%= @challenge.title %>>
+    <p class= "btn btn-primary" data-action="click->share#shareLink">Partage ton lien </p>
+  </div>
 
+<br>
  else
+                <%# Afficher les users participants %>
+  <p><%= @users.map { |user| user.name} %></p>
 
   <div class='challenge-description'>
     <h1><%= @challenge.title %></h1>
@@ -40,6 +66,5 @@ if
       <% end %>
     </ul>
   </div>
-
 
 end
