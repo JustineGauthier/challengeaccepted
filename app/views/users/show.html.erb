@@ -19,7 +19,11 @@
   <div>
     <ul>
       <% @challenges.each do |challenge| %>
+<<<<<<< HEAD
         <%= cl_image_path @challenge.photo.key, height: 200, width: 200, crop: :fill %>
+=======
+        <li><%= cl_image_path @challenge.photo.key, height: 200, width: 200, crop: :fill %></li>
+>>>>>>> 275c8422d1d074ea53d79585a086dc122bf10461
           <% @participations.each do |participation| %>
             <% participation.progressions.each do |progression| %>
               <% if progression.done == false && progression.date < Date.tomorrow %>
@@ -30,6 +34,9 @@
                   <li><%= progression.date %></li>
                   <button class="btn btn-primary" data-action="click->validate-progression#validate">
                     V
+                  </button>
+                  <button class="btn btn-primary" data-action="click->validate-progression#nop">
+                    X
                   </button>
                 </div>
               <% end %>
