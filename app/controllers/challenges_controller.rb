@@ -22,6 +22,9 @@ class ChallengesController < ApplicationController
     if @challenge.save
       @challenge.total_time = (@challenge.end_date - @challenge.start_date)
       @challenge.save
+      user = current_user
+      participation = Participation.new
+      participation.user_id = user
       redirect_to challenge_path(@challenge)
     else
       render :show
