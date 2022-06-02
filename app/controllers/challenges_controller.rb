@@ -10,7 +10,6 @@ class ChallengesController < ApplicationController
     end_date = @challenge.end_date
     @time_left = (end_date - start_date).to_i
     @participations = @challenge.participations
-
     @users = @participations.map(&:user)
     @creator = @challenge.participations.first.user
   end
