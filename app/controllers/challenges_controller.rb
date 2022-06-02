@@ -31,6 +31,10 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def join
+    redirect_to challenge_path
+  end
+
   private
 
   def challenge_params
