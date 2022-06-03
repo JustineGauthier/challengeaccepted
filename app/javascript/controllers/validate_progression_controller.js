@@ -2,7 +2,6 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs"
 
 export default class extends Controller {
-  static targets = ["card"]
   static values = {
     updateUrl: String
   }
@@ -16,12 +15,13 @@ export default class extends Controller {
         }
     })
       .then(response => {
-        this.cardTarget.remove();
+        this.element.remove();
+        window.location.reload()
       } )
   }
 
   nop(event) {
     event.preventDefault()
-    this.cardTarget.remove();
+    this.element.remove();
   }
 }
