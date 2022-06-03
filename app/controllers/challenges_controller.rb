@@ -23,7 +23,7 @@ class ChallengesController < ApplicationController
     if @challenge.save
       @challenge.total_time = (@challenge.end_date - @challenge.start_date)
       user = current_user
-      participation = Participation.new({user: user, challenge: @challenge })
+      participation = Participation.new({ user: user, challenge: @challenge })
       participation.save
       redirect_to challenge_path(@challenge)
     else
