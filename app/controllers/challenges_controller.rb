@@ -35,6 +35,12 @@ class ChallengesController < ApplicationController
     redirect_to challenge_path
   end
 
+  def started
+    challenge = Challenge.find(params[:id])
+    challenge.update!(started: true)
+    head :ok
+  end
+
   private
 
   def challenge_params
