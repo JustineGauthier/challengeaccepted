@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_03_095307) do
+ActiveRecord::Schema.define(version: 2022_06_02_153457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2022_06_03_095307) do
     t.string "frequency"
     t.date "start_date"
     t.date "end_date"
+    t.integer "points"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total_time"
@@ -70,7 +71,6 @@ ActiveRecord::Schema.define(version: 2022_06_03_095307) do
     t.bigint "participation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "points"
     t.index ["participation_id"], name: "index_progressions_on_participation_id"
   end
 
