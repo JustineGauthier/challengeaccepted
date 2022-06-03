@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :challenges, only: [:new, :create, :show] do
     member do
       get :join
+      post :started
     end
   end
   resources :participations, only: [:show, :create]
