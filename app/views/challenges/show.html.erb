@@ -59,7 +59,6 @@
   <% if current_user == @creator %>
     <div data-controller="started"
       data-started-update-url-value="<%=  started_challenge_path(@challenge) %>"
-      data-started-final-url-value="<%=  challenge_path(@challenge) %>"
     <button class="btn btn-primary" data-action="click->started#status">
       Lancer le challenge
     </button>
