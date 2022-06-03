@@ -36,9 +36,9 @@
     <div class="enter-challenge">
       <div data-controller='enter-challenge'
         data-enter-challenge-target="card-enter"
-        data-enter-challenge-create-url-value= <%= participations_path %>
-        data-enter-challenge-user-id-value= <%= current_user.id %>
-        data-enter-challenge-challenge-id-value= <%= @challenge.id %>>
+        data-enter-challenge-create-url-value= "<%= participations_path %>"
+        data-enter-challenge-user-id-value= "<%= current_user.id %>"
+        data-enter-challenge-challenge-id-value= "<%= @challenge.id %>">
         <p>Veux-tu participer à ce challenge ?</p>
         <button class="btn btn-primary" data-action="click->enter-challenge#accept">
           V
