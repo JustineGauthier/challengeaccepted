@@ -6,7 +6,7 @@
     <p><%= @challenge.description %></p>
     <ul>
       <% @users.each do |user| %>
-        <li><%= cl_image_path user.photo.key, height: 200, width: 200, crop: :fill </li>
+        <%# <li><%= cl_image_path user.photo.key, height: 200, width: 200, crop: :fill </li> %>
         <li><%= user.name %></li>
         <% @participations.each do |participation| %>
           <% if participation.user_id == user.id %>
@@ -26,7 +26,7 @@
   <h1>Le challenge <%= @challenge.title %> est prêt à être lancé !</h1>
   <h6>Ton challenge commencera le <%= @challenge.start_date %> et se déroulera sur <%= @challenge.total_time %> jours.</h6>
   <p>Rappel des règles: <%= @challenge.description %></p>
-  <%= cl_image_tag(@challenge.photo.key, width: 400, height: 300, crop: :fill) %>
+  <%# <%= cl_image_tag(@challenge.photo.key, width: 400, height: 300, crop: :fill) %> %>
   <% if current_user == @creator %>
     <p>Si t'es prêt, invite tes potes !</p>
     <div data-controller="share" data-share-id-value= <%= @challenge.id %>  data-share-title-value= <%= @challenge.title %> data-share-creator-value= <%= @creator.name %>>
@@ -36,7 +36,7 @@
   <h2>Les participant·e·s au challenge :</h2>
   <% @users.each do |user| %>
   <ul>
-    <li><%= cl_image_path user.photo.key, height: 200, width: 200, crop: :fill </li>
+    <%# <li><%= cl_image_path user.photo.key, height: 200, width: 200, crop: :fill %></li> %>
     <li><%= user.name %></li>
   </ul>
   <% end %>
