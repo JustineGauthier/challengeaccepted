@@ -2,7 +2,7 @@
   <div class="w-100 text-center">
     <h1>CHALLENGE ACCEPTED</h1>
       <div>
-        <%# <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %> %>
+        <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %>
       </div>
       <div>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
