@@ -4,6 +4,11 @@
       <div>
         <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %>
       </div>
+
+      <div>
+        <p>Ton nombre de points : <%= @user.total_points %> </p>
+      </div>
+
       <div>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
       </div>
@@ -19,8 +24,7 @@
                 <% if participation.user_id == current_user.id %>
                   <ul>
                     <div data-controller="validate-progression"
-                        data-validate-progression-update-url-value="<%= done_progression_path(progression) %>"
-                        data-validate-progression-target="card">
+                        data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
                       <li>
                         <%= challenge.title %>
                         <%= progression.date %>
