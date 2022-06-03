@@ -58,7 +58,6 @@
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
         <% if challenge.end_date > Date.yesterday %>
           <li>
             <%= link_to challenge_path(challenge) do %>
@@ -83,7 +82,6 @@
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
         <% if challenge.end_date < Date.today %>
           <li>
             <%= link_to challenge_path(challenge) do %>
