@@ -17,6 +17,7 @@ export default class extends Controller {
     })
       .then(response => {
         this.cardTarget.remove();
+        
       } )
   }
 
