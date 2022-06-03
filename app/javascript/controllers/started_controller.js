@@ -6,7 +6,7 @@ export default class extends Controller {
     updateUrl: String
   }
 
-  validate(event) {
+  status(event) {
     event.preventDefault()
     fetch(this.updateUrlValue, {
       method: "POST",
@@ -15,13 +15,7 @@ export default class extends Controller {
         }
     })
       .then(response => {
-        this.element.remove();
         window.location.reload()
       } )
-  }
-
-  nop(event) {
-    event.preventDefault()
-    this.element.remove();
   }
 }

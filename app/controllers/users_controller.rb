@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @participations = @user.participations
+    @participations = @user.participations.includes(:progressions)
     @challenges = @participations.map(&:challenge)
   end
 
