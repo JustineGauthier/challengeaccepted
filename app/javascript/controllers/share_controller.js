@@ -15,7 +15,7 @@ export default class extends Controller {
 
     const options = {
       title: this.titleValue,
-      text: `${this.creatorValue} t'invite à rejoindre le challenge ${this.titleValue}`,
+      text: `${this.creatorValue} t'invite à rejoindre le challenge ${this.titleValue}!`,
       url: url,
     }
 
