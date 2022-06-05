@@ -4,7 +4,6 @@ import { csrfToken } from "@rails/ujs"
 function insertAfter(newNode, existingNode) {
   existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
-
 export default class extends Controller {
   static values = {
     updateUrl: String
@@ -52,5 +51,10 @@ export default class extends Controller {
       }
       setTimeout(createH, 1000);
     })
+
+//       .then(response => {
+//         window.location.reload()
+//       } )
+
   }
 }

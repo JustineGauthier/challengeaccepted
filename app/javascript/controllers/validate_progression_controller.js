@@ -49,6 +49,12 @@ export default class extends Controller {
       setTimeout(congrat, 1000);
 
     })
+
+//       .then(response => {
+//         this.element.remove();
+//         window.location.reload()
+//       } )
+
   }
 
   nop(event) {
