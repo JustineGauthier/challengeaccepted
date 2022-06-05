@@ -25,6 +25,10 @@ export default class extends Controller {
     })
       .then(response => {
         this.element.remove();
+        
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
       } )
   }
 
