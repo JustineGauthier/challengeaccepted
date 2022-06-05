@@ -6,7 +6,7 @@ class CreateChallenges < ActiveRecord::Migration[6.1]
       t.string :frequency
       t.date :start_date
       t.date :end_date
-      t.integer :points
+      # t.integer :points
 
       t.timestamps
     end
