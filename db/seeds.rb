@@ -14,20 +14,20 @@
 
 puts "creating challenges"
 challenge = Challenge.create!(title: "Bouge ton boul'", description: "Trois semaines de pur bonheur (et de squat 1x/jours...) !
-Bon courage les filles !", frequency: 'quotidien', start_date: 20220515, end_date: 20220513, total_time: 30)
+Bon courage les filles !", frequency: "quotidien", start_date: 20220515, end_date: 20220513, total_time: 30)
 challenge2 = Challenge.create!(title: "Aller hop !", description: "Un kilomètre à pied ça useuuh, ça useuuuh.
-Un kilomètre à pied, ça useuuuuh les soulieeeeers !", frequency: 'hebdomadaire', start_date: 20220501, end_date: 20220627, total_time: 52)
+Un kilomètre à pied, ça useuuuuh les soulieeeeers !", frequency: "hebdomadaire", start_date: 20220501, end_date: 20220627, total_time: 52)
 challenge3 = Challenge.create!(title: "Ratatooooooouille", description: "Ta mission, si tu l'acceptes, faire un plat
-végétarien par semaine sur un mois", frequency: 'hebdomadaire', start_date: 20220601, end_date: 20220701, total_time: 30)
+végétarien par semaine sur un mois", frequency: "hebdomadaire", start_date: 20220601, end_date: 20220701, total_time: 30)
 
 puts "creating users"
 
-user1 = User.create!(email: 'bouh@bouh.fr', password: 'Bouhbouh', name: 'Bouh',
-             total_points: 685)
-user2 = User.create!(email: 'flo@flo.fr', password: 'floflo', name: 'flo',
-             total_points: 685)
-user3 = User.create!(email: 'julie@julie.fr', password: 'juliejulie', name: 'julie',
-             total_points: 685)
+user1 = User.create!(email: "bouh@bouh.fr", password: "Bouhbouh", name: "Bouh",
+                     total_points: 685)
+user2 = User.create!(email: "flo@flo.fr", password: "floflo", name: "flo",
+                     total_points: 685)
+user3 = User.create!(email: "julie@julie.fr", password: "juliejulie", name: "julie",
+                     total_points: 685)
 
 part1 = Participation.create!(challenge: challenge, user: user1)
 part2 = Participation.create!(challenge: challenge, user: user2)

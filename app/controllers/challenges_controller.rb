@@ -6,7 +6,10 @@ class ChallengesController < ApplicationController
   end
 
   def show
-    @challenge = Challenge.find(params[:challenge_id])
+    start_date = @challenge.start_date
+    end_date = @challenge.end_date
+    @time_left = (@challenge.end_date - Date.today).to_i
+    @challenge.total_time = (@challenge.end_date - @challenge.start_date)
     @participations = @challenge.participations
     @users = @participations.map(&:user)
     @creator = @challenge.participations.first.user
@@ -23,8 +26,8 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new(challenge_params)
     if @challenge.save
       @challenge.total_time = (@challenge.end_date - @challenge.start_date)
-      user = current_user
-      participation = Participation.new({ user: user, challenge: @challenge })
+      @user = current_user
+      participation = Participation.new({ user: @user, challenge: @challenge })
       participation.save
       redirect_to challenge_path(@challenge)
     else
@@ -45,7 +48,7 @@ class ChallengesController < ApplicationController
   private
 
   def challenge_params
-    params.require(:challenge).permit(:start_date, :end_date, :title, :photo, :description, :frequency)
+    params.require(:challenge).permit(:start_date, :end_date, :title, :photo, :description, :frequency, :total_time, :time_left)
   end
 
   def set_challenge

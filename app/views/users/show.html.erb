@@ -6,7 +6,8 @@
       </div>
 
       <div>
-        <p>Ton nombre de points : <%= @user.total_points %> </p>
+        <p><strong><%= @user.total_points %></strong> 🏆</p>
+        <p>Wow, tu te surpasses!</p>
       </div>
 
       <div>
@@ -15,6 +16,7 @@
   </div>
   <div class='validation_progression'>
     <h2>Tes défis à valider :</h2>
+    <p>Qu'as-tu accomplis aujourd'hui?</p>
     <div>
       <% @challenges.each do |challenge| %>
         <% if challenge.end_date > Date.yesterday %>
@@ -26,14 +28,14 @@
                     <div data-controller="validate-progression"
                         data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
                       <li>
-                        <%= challenge.title %>
-                        <%= progression.date %>
+                        <strong><%= challenge.title %></strong>
+                        <p>Se termine le <em><%= challenge.end_date %></em></p>
                       </li>
-                      <button class="btn btn-primary" data-action="click->validate-progression#validate">
-                        V
+                      <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
+                        ✔️
                       </button>
-                      <button class="btn btn-primary" data-action="click->validate-progression#nop">
-                        X
+                      <button class="btn btn-not-valid btn-primary" data-action="click->validate-progression#nop">
+                        ❌
                       </button>
                     </div>
                   </ul>
@@ -56,18 +58,20 @@
       <ul>
         <% @participations.each do |participation| %>
           <% participation.progressions.each do |progression| %>
-            <% @progression_count = 0 %>
             <% if progression.done %>
-              <% @progression_count += 1 %>
+              <% @progression_count %>
+              <%# Pour chaques click sur "done", +1 doit être ajouté à @progression_count du challenge en question. %>
             <% end %>
           <% end %>
         <% end %>
         <% if challenge.end_date > Date.yesterday %>
+          <% time_left = (challenge.end_date - Date.today).to_i %>
           <li>
             <%= link_to challenge_path(challenge) do %>
-              <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
-              <%= challenge.title %>
-              <p><%= @progression_count%>/<%= challenge.total_time %>jours</p>
+              <%# <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
+              <strong><%= challenge.title %></strong>
+              <div>Réalisé : <%= @progression_count %> fois</div>
+              <div>Se termine dans : <%= time_left %> jours</div>
             <% end %>
           </li>
         <% end %>
@@ -80,18 +84,17 @@
       <ul>
         <% @participations.each do |participation| %>
           <% participation.progressions.each do |progression| %>
-            <% @progression_count = 0 %>
             <% if progression.done %>
-              <% @progression_count += 1 %>
+              <% @progression_count %>
             <% end %>
           <% end %>
         <% end %>
         <% if challenge.end_date < Date.today %>
           <li>
             <%= link_to challenge_path(challenge) do %>
-              <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
+              <%# <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
               <%= challenge.title %>
-              <p><%= @progression_count%>/<%= challenge.total_time %>jours</p>
+              <p>Tu avais validé <%= @progression_count%>/<%= challenge.total_time %>jours</p>
             <% end %>
           </li>
         <% end %>
