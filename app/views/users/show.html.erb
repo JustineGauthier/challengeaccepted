@@ -2,7 +2,7 @@
   <div class="w-100 text-center">
     <h1>CHALLENGE ACCEPTED</h1>
       <div>
-        <%# <%= cl_image_tag @user.photo.key, width: 400, height: 300, class: "avatar", crop: :fill %> %>
+        <%= cl_image_tag @user.photo.key, width: 400, height: 300, class: "avatar", crop: :fill %>
       </div>
       <div>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -61,7 +61,7 @@
         <% if challenge.end_date > Date.yesterday %>
           <li>
             <%= link_to challenge_path(challenge) do %>
-              <%# <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %> %>
+              <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
               <%= challenge.title %>
               <p><%= @progression_count%>/<%= challenge.total_time %>jours</p>
             <% end %>
@@ -85,7 +85,7 @@
         <% if challenge.end_date < Date.today %>
           <li>
             <%= link_to challenge_path(challenge) do %>
-              <%# <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %> %>
+              <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
               <%= challenge.title %>
               <p><%= @progression_count%>/<%= challenge.total_time %>jours</p>
             <% end %>

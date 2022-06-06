@@ -2,7 +2,7 @@
 <% if @challenge.end_date < Date.today %>
   <div class="container">
     <div class="w-100 text-center">
-      <%# <li><%= cl_image_tag @challenge.photo.key, height: 200, width: 200, crop: :fill %></li>
+      <li><%= cl_image_tag @challenge.photo.key, height: 200, width: 200, crop: :fill %></li>
       <h2>Le challenge "<%= @challenge.title %>" s'est terminé le <%= @challenge.end_date %></h1>
       <h6>Durée totale : <%= @challenge.total_time %> jours.</h6>
       <p>🎉 Tu as effectué "TODO"<%= @progression_count %> jours de challenge, et remporté "TO CHECK"<%= @new_points %> points! 🎉</p>
@@ -10,7 +10,7 @@
           <ul>
             <% @users.each do |user| %>
             <li> <strong><%= user.name %>:</strong> <%= @new_points %>"TO CHECK" 🏆</li>
-            <%# <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill</li> %>
+            <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill</li>
           </ul>
         </div>
     </div>
@@ -25,7 +25,7 @@
     <p>Rappel de ta superbe description: <%= @challenge.description %></p>
     <ul>
       <% @users.each do |user| %>
-        <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill</li>
+        <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill</li> %>
         <li><%= user.name %>: <%= user.total_points %> points.</li>
         <% @participations.each do |participation| %>
           <% if participation.user_id == user.id %>
