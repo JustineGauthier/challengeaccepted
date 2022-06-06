@@ -52,17 +52,15 @@
   <div class="d-flex justify-content-center">
     <%= link_to "Lancer un challenge!", new_challenge_path, class: "btn btn-primary" %>
   </div>
-
   <div>
     <h2>Tes challenges en cours:</h2>
-      <div class="card2">
-        <% @challenges.each do |challenge| %>
-          <ul>
+      <% @challenges.each do |challenge| %>
+        <div class="card2">
+          <ul class="list-inline">
             <% @participations.each do |participation| %>
               <% participation.progressions.each do |progression| %>
                 <% if progression.done %>
                   <% @progression_count %>
-                  <%# Pour chaques click sur "done", +1 doit être ajouté à @progression_count du challenge en question. %>
                 <% end %>
               <% end %>
             <% end %>
@@ -70,18 +68,20 @@
               <% time_left = (challenge.end_date - Date.today).to_i %>
               <li>
                 <%= link_to challenge_path(challenge) do %>
-                  <li><strong><%= challenge.title %></strong></li>
-                  <div>Réalisé : <%= @progression_count %> fois</div>
+                  <strong><%= challenge.title %></strong>
                   <div>Se termine dans : <%= time_left %> jours</div>
                 <% end %>
+              </li>
             <% end %>
           </ul>
-        <% end %>
-      </div>
+        </div>
+     <% end %>
   </div>
+
   <div>
     <h2>Tes anciens challenges :</h2>
       <div class="card2">
+        <%= image_tag "petite-forme.svg", class: "sticky-top ml-20" %>
         <% @challenges.each do |challenge| %>
           <ul>
             <% @participations.each do |participation| %>
@@ -102,4 +102,5 @@
           </ul>
         <% end %>
       </div>
+  </div>
 </div>
