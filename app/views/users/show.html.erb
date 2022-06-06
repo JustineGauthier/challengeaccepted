@@ -56,50 +56,44 @@
 
   <div>
     <h2>Tes challenges en cours:</h2>
-      <div class="card2">
-        <% @challenges.each do |challenge| %>
-          <ul>
-            <% @participations.each do |participation| %>
-              <% participation.progressions.each do |progression| %>
-                <% if progression.done %>
-                  <% @progression_count %>
-                  <%# Pour chaques click sur "done", +1 doit être ajouté à @progression_count du challenge en question. %>
-                <% end %>
+    <div class="card2">
+      <% @challenges.each do |challenge| %>
+        <ul>
+          <% @participations.each do |participation| %>
+            <% participation.progressions.each do |progression| %>
+              <% if progression.done %>
+                <% @progression_count %>
               <% end %>
             <% end %>
           <% end %>
-        <% end %>
-        <% if challenge.end_date > Date.yesterday %>
-          <% time_left = (challenge.end_date - Date.today).to_i %>
-          <li>
-            <%= link_to challenge_path(challenge) do %>
-              <strong><%= challenge.title %></strong>
-              <div>Se termine dans : <%= time_left %> jours</div>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
+          <% if challenge.end_date > Date.yesterday %>
+            <% time_left = (challenge.end_date - Date.today).to_i %>
+            <li>
+              <%= link_to challenge_path(challenge) do %>
+                <strong><%= challenge.title %></strong>
+                <div>Se termine dans : <%= time_left %> jours</div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
+
   <div>
     <h2>Tes anciens challenges :</h2>
-      <div class="card2">
+    <div class="card2">
+      <ul>
         <% @challenges.each do |challenge| %>
-          <ul>
-            <% @participations.each do |participation| %>
-              <% participation.progressions.each do |progression| %>
-                <% if progression.done %>
-                  <% @progression_count %>
-                <% end %>
+          <% if challenge.end_date < Date.today %>
+            <li>
+              <%= link_to challenge_path(challenge) do %>
+                <%= challenge.title %>
               <% end %>
-            <% end %>
+            </li>
           <% end %>
         <% end %>
-        <% if challenge.end_date < Date.today %>
-          <li>
-            <%= link_to challenge_path(challenge) do %>
-              <%= challenge.title %>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
+      </ul>
+    </div>
+  </div>
 </div>
