@@ -80,17 +80,17 @@
 
   <div>
     <h2>Tes anciens challenges :</h2>
-      <div class="card2">
-        <%= image_tag "petite-forme.svg", class: "sticky-top ml-20" %>
-        <% @challenges.each do |challenge| %>
-          <% if challenge.end_date < Date.today %>
-            <li>
-              <%= link_to challenge_path(challenge) do %>
+      <% @challenges.each do |challenge| %>
+        <div class="card2">
+          <%= image_tag "petite-forme.svg", class: "sticky-top ml-20" %>
+            <% if challenge.end_date < Date.today %>
+              <li>
+                <%= link_to challenge_path(challenge) do %>
                 <%= challenge.title %>
-              <% end %>
-            </li>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
   </div>
 </div>
