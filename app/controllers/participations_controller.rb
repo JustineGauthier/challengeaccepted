@@ -17,7 +17,7 @@ class ParticipationsController < ApplicationController
   def create_progressions(challenge, participation)
     case challenge.frequency
     when "Quotidien"
-      daily_progressions(challenge, participation)
+      daily_progression(challenge, participation)
     when "Hebdomadaire"
       weekly_progression(challenge, participation)
     when "Unique"
@@ -30,25 +30,23 @@ class ParticipationsController < ApplicationController
     date = challenge.start_date - 1
     while duration.positive?
       new_date = date += 1
-      Progression.new(date: new_date, participation: participation, points: 10)
+      Progression.create!(date: new_date, participation: participation, points: 10, done: false)
       duration -= 1
-      Progression.save
     end
   end
 
   def weekly_progression(challenge, participation)
+    duration = challenge.total_time
     date = challenge.start_date - 7
     while duration.positive?
       new_date = date += 7
-      Progression.new(date: new_date, participation: participation, points: 50)
+      Progression.create!(date: new_date, participation: participation, points: 50, done: false)
       duration -= 7
-      Progression.save
     end
   end
 
   def monthly_progression(challenge, participation)
     new_date = challenge.end_date
-    Progression.new(date: new_date, participation: participation, points: 150)
-    Progression.save
+    Progression.create!(date: new_date, participation: participation, points: 150, done: false)
   end
 end
