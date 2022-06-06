@@ -6,12 +6,13 @@ class ChallengesController < ApplicationController
   end
 
   def show
-    start_date = @challenge.start_date
-    end_date = @challenge.end_date
-    @time_left = (end_date - start_date).to_i
+    @challenge = Challenge.find(params[:challenge_id])
     @participations = @challenge.participations
     @users = @participations.map(&:user)
     @creator = @challenge.participations.first.user
+    start_date = @challenge.start_date
+    end_date = @challenge.end_date
+    @time_left = (end_date - start_date).to_i
   end
 
   def new
