@@ -26,7 +26,8 @@
                         label: "Confirme le mot de passe",
                         required: true,
                         input_html: { autocomplete: "nouveau mot de passe" } %>
-            <%= f.input :photo, as: :file %>
+            <%= f.input :photo, as: :file,
+                        required: true %>
           </div>
 
           <div class="form-actions">
