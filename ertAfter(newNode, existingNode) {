@@ -1,0 +1,57 @@
+[1mdiff --git a/app/controllers/progressions_controller.rb b/app/controllers/progressions_controller.rb[m
+[1mindex b3ab45b..9a90237 100644[m
+[1m--- a/app/controllers/progressions_controller.rb[m
+[1m+++ b/app/controllers/progressions_controller.rb[m
+[36m@@ -8,24 +8,24 @@[m [mclass ProgressionsController < ApplicationController[m
+     head :ok[m
+   end[m
+ [m
+[31m-  def index[m
+[31m-    @progressions = Progression.all[m
+[31m-  end[m
+[32m+[m[32m  # def index[m
+[32m+[m[32m  #   @progressions = Progression.all[m
+[32m+[m[32m  # end[m
+ [m
+   def new[m
+     @progression = Progression.new[m
+   end[m
+ [m
+[31m-  def edit[m
+[31m-    @progression = Progression.find(params[:id])[m
+[31m-  end[m
+[32m+[m[32m  # def edit[m
+[32m+[m[32m  #   @progression = Progression.find(params[:id])[m
+[32m+[m[32m  # end[m
+ [m
+[31m-  def update[m
+[31m-    @progression = Progression.find(params[:id])[m
+[31m-    @progression.update(progression_params)[m
+[32m+[m[32m  # def update[m
+[32m+[m[32m  #   @progression = Progression.find(params[:id])[m
+[32m+[m[32m  #   @progression.update(progression_params)[m
+ [m
+[31m-    redirect_to done_progression_path(@progression)[m
+[31m-  end[m
+[32m+[m[32m  #   redirect_to done_progression_path(@progression)[m
+[32m+[m[32m  # end[m
+ [m
+   def create[m
+     progression = Progression.find(params[:id])[m
+[1mdiff --git a/app/views/users/show.html.erb b/app/views/users/show.html.erb[m
+[1mindex 1dd9439..a728233 100644[m
+[1m--- a/app/views/users/show.html.erb[m
+[1m+++ b/app/views/users/show.html.erb[m
+[36m@@ -47,11 +47,10 @@[m
+       <% end %>[m
+     </div>[m
+   </div>[m
+[31m-[m
+   <div class="d-flex justify-content-center">[m
+     <%= link_to "Lancer un challenge!", new_challenge_path, class: "btn btn-primary" %>[m
+   </div>[m
+[31m-[m
+[32m+[m[32m<% raise %>[m
+   <div>[m
+     <h2>Tes challenges en cours:</h2>[m
+     <% @challenges.each do |challenge| %>[m
