@@ -2,7 +2,7 @@
   <div class="w-100 text-center">
     <h1>CHALLENGE ACCEPTED</h1>
       <div>
-        <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %>
+        <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
       </div>
       <div>
         <p><strong><%= @user.total_points %></strong> 🏆</p>
@@ -20,6 +20,7 @@
   <div class='validation_progression'>
     <h2>Tes progressions à valider :</h2>
     <div>
+    -------
       <% @challenges.each do |challenge| %>
         <% if challenge.end_date > Date.yesterday %>
           <% challenge.participations.each do |participation| %>
@@ -55,13 +56,16 @@
 
   <div>
     <h2>Tes challenges en cours:</h2>
-    <% @challenges.each do |challenge| %>
-      <ul>
-        <% @participations.each do |participation| %>
-          <% participation.progressions.each do |progression| %>
-            <% if progression.done %>
-              <% @progression_count %>
-              <%# Pour chaques click sur "done", +1 doit être ajouté à @progression_count du challenge en question. %>
+      <div class="card2">
+        <% @challenges.each do |challenge| %>
+          <ul>
+            <% @participations.each do |participation| %>
+              <% participation.progressions.each do |progression| %>
+                <% if progression.done %>
+                  <% @progression_count %>
+                  <%# Pour chaques click sur "done", +1 doit être ajouté à @progression_count du challenge en question. %>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
@@ -72,19 +76,21 @@
               <strong><%= challenge.title %></strong>
               <div>Se termine dans : <%= time_left %> jours</div>
             <% end %>
-          </li>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
+      </div>
   </div>
   <div>
-  <h2>Tes anciens challenges :</h2>
-    <% @challenges.each do |challenge| %>
-      <ul>
-        <% @participations.each do |participation| %>
-          <% participation.progressions.each do |progression| %>
-            <% if progression.done %>
-              <% @progression_count %>
+    <h2>Tes anciens challenges :</h2>
+      <div class="card2">
+        <% @challenges.each do |challenge| %>
+          <ul>
+            <% @participations.each do |participation| %>
+              <% participation.progressions.each do |progression| %>
+                <% if progression.done %>
+                  <% @progression_count %>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
@@ -93,9 +99,7 @@
             <%= link_to challenge_path(challenge) do %>
               <%= challenge.title %>
             <% end %>
-          </li>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
-  </div>
+      </div>
 </div>

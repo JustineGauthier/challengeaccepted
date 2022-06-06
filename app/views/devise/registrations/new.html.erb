@@ -29,11 +29,12 @@
                         label: "Confirme le mot de passe",
                         required: true,
                         input_html: { autocomplete: "nouveau mot de passe" } %>
-            <%= f.input :photo, as: :file %>
+            <%= f.input :photo, as: :file,
+                        required: true %>
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Je m'inscris!", class:"btn btn btn-primary" %>
+            <%= f.button :submit, "Je m'inscris!", class:"btn" %>
           </div>
         <% end %>
         <%= render "devise/shared/links" %>
