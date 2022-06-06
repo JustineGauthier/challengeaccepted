@@ -2,7 +2,7 @@
   <div class="w-100 text-center">
     <h1>CHALLENGE ACCEPTED</h1>
       <div>
-        <%= cl_image_tag(@user.photo.key, width: 400, height: 300, crop: :fill) %>
+        <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
       </div>
 
       <div>
@@ -16,8 +16,9 @@
   </div>
   <div class='validation_progression'>
     <h2>Tes défis à valider :</h2>
-    <p>Qu'as-tu accomplis aujourd'hui?</p>
+    <p>Qu'as-tu accompli aujourd'hui?</p>
     <div>
+    -------
       <% @challenges.each do |challenge| %>
         <% if challenge.end_date > Date.yesterday %>
           <% challenge.participations.each do |participation| %>
@@ -54,51 +55,51 @@
 
   <div>
     <h2>Tes challenges en cours:</h2>
-    <% @challenges.each do |challenge| %>
-      <ul>
-        <% @participations.each do |participation| %>
-          <% participation.progressions.each do |progression| %>
-            <% if progression.done %>
-              <% @progression_count %>
-              <%# Pour chaques click sur "done", +1 doit être ajouté à @progression_count du challenge en question. %>
+      <div class="card2">
+        <% @challenges.each do |challenge| %>
+          <ul>
+            <% @participations.each do |participation| %>
+              <% participation.progressions.each do |progression| %>
+                <% if progression.done %>
+                  <% @progression_count %>
+                  <%# Pour chaques click sur "done", +1 doit être ajouté à @progression_count du challenge en question. %>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
-        <% end %>
-        <% if challenge.end_date > Date.yesterday %>
-          <% time_left = (challenge.end_date - Date.today).to_i %>
-          <li>
-            <%= link_to challenge_path(challenge) do %>
-              <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
-              <strong><%= challenge.title %></strong>
-              <div>Réalisé : <%= @progression_count %> fois</div>
-              <div>Se termine dans : <%= time_left %> jours</div>
+            <% if challenge.end_date > Date.yesterday %>
+              <% time_left = (challenge.end_date - Date.today).to_i %>
+              <li>
+                <%= link_to challenge_path(challenge) do %>
+                  <li><strong><%= challenge.title %></strong></li>
+                  <div>Réalisé : <%= @progression_count %> fois</div>
+                  <div>Se termine dans : <%= time_left %> jours</div>
+                <% end %>
             <% end %>
-          </li>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
+      </div>
   </div>
   <div>
-  <h2>Tes anciens challenges :</h2>
-    <% @challenges.each do |challenge| %>
-      <ul>
-        <% @participations.each do |participation| %>
-          <% participation.progressions.each do |progression| %>
-            <% if progression.done %>
-              <% @progression_count %>
+    <h2>Tes anciens challenges :</h2>
+      <div class="card2">
+        <% @challenges.each do |challenge| %>
+          <ul>
+            <% @participations.each do |participation| %>
+              <% participation.progressions.each do |progression| %>
+                <% if progression.done %>
+                  <% @progression_count %>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
-        <% end %>
-        <% if challenge.end_date < Date.today %>
-          <li>
-            <%= link_to challenge_path(challenge) do %>
-              <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
-              <%= challenge.title %>
-              <p>Tu avais validé <%= @progression_count%>/<%= challenge.total_time %>jours</p>
+            <% if challenge.end_date < Date.today %>
+              <li>
+                <%= link_to challenge_path(challenge) do %>
+                  <li><%= challenge.title %></li>
+                  <li><p>Tu avais validé <%= @progression_count%>/<%= challenge.total_time %>jours</p>
+                <% end %>
+              </li>
             <% end %>
-          </li>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
-  </div>
+      </div>
 </div>
