@@ -4,10 +4,13 @@
       <div>
         <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
       </div>
-
       <div>
         <p><strong><%= @user.total_points %></strong> 🏆</p>
-        <p>Wow, tu te surpasses!</p>
+        <% if @user.total_points.positive? %>
+          <p>Wow, tu te surpasses!</p>
+        <% else %>
+          <p>Accomplis une progression pour gagner tes premiers points !</p>
+        <% end %>
       </div>
 
       <div>
@@ -15,8 +18,7 @@
       </div>
   </div>
   <div class='validation_progression'>
-    <h2>Tes défis à valider :</h2>
-    <p>Qu'as-tu accompli aujourd'hui?</p>
+    <h2>Tes progressions à valider :</h2>
     <div>
     -------
       <% @challenges.each do |challenge| %>
@@ -31,13 +33,13 @@
                       <li>
                         <strong><%= challenge.title %></strong>
                         <p>Se termine le <em><%= challenge.end_date %></em></p>
+                        <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
+                          ✔️
+                        </button>
+                        <button class="btn btn-not-valid btn-primary" data-action="click->validate-progression#nop">
+                          ❌
+                        </button>
                       </li>
-                      <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
-                        ✔️
-                      </button>
-                      <button class="btn btn-not-valid btn-primary" data-action="click->validate-progression#nop">
-                        ❌
-                      </button>
                     </div>
                   </ul>
                 <% end %>
@@ -48,7 +50,6 @@
       <% end %>
     </div>
   </div>
-
   <div class="d-flex justify-content-center">
     <%= link_to "Lancer un challenge!", new_challenge_path, class: "btn btn-primary" %>
   </div>
@@ -66,14 +67,14 @@
                 <% end %>
               <% end %>
             <% end %>
-            <% if challenge.end_date > Date.yesterday %>
-              <% time_left = (challenge.end_date - Date.today).to_i %>
-              <li>
-                <%= link_to challenge_path(challenge) do %>
-                  <li><strong><%= challenge.title %></strong></li>
-                  <div>Réalisé : <%= @progression_count %> fois</div>
-                  <div>Se termine dans : <%= time_left %> jours</div>
-                <% end %>
+          <% end %>
+        <% end %>
+        <% if challenge.end_date > Date.yesterday %>
+          <% time_left = (challenge.end_date - Date.today).to_i %>
+          <li>
+            <%= link_to challenge_path(challenge) do %>
+              <strong><%= challenge.title %></strong>
+              <div>Se termine dans : <%= time_left %> jours</div>
             <% end %>
           </ul>
         <% end %>
@@ -91,13 +92,12 @@
                 <% end %>
               <% end %>
             <% end %>
-            <% if challenge.end_date < Date.today %>
-              <li>
-                <%= link_to challenge_path(challenge) do %>
-                  <li><%= challenge.title %></li>
-                  <li><p>Tu avais validé <%= @progression_count%>/<%= challenge.total_time %>jours</p>
-                <% end %>
-              </li>
+          <% end %>
+        <% end %>
+        <% if challenge.end_date < Date.today %>
+          <li>
+            <%= link_to challenge_path(challenge) do %>
+              <%= challenge.title %>
             <% end %>
           </ul>
         <% end %>
