@@ -68,7 +68,7 @@
           <% time_left = (challenge.end_date - Date.today).to_i %>
           <li>
             <%= link_to challenge_path(challenge) do %>
-              <%# <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
+              <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
               <strong><%= challenge.title %></strong>
               <div>Réalisé : <%= @progression_count %> fois</div>
               <div>Se termine dans : <%= time_left %> jours</div>
@@ -92,7 +92,7 @@
         <% if challenge.end_date < Date.today %>
           <li>
             <%= link_to challenge_path(challenge) do %>
-              <%# <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
+              <%= cl_image_tag challenge.photo.key, height: 200, width: 200, crop: :fill %>
               <%= challenge.title %>
               <p>Tu avais validé <%= @progression_count%>/<%= challenge.total_time %>jours</p>
             <% end %>
