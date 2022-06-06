@@ -1,20 +1,20 @@
 <div class="container">
   <div class="w-100 text-center">
+      <div>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+      </div>
     <h1>CHALLENGE ACCEPTED</h1>
       <div>
         <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
       </div>
       <div>
+      <p>Hey, <%= @user.name %></p>
         <p><strong><%= @user.total_points %></strong> 🏆</p>
         <% if @user.total_points.positive? %>
           <p>Wow, tu te surpasses!</p>
         <% else %>
           <p>Accomplis une progression pour gagner tes premiers points !</p>
         <% end %>
-      </div>
-
-      <div>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
       </div>
   </div>
   <div class='validation_progression'>
