@@ -30,9 +30,9 @@ export default class extends Controller {
       .then(response => {
         this.element.remove();
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000);
 
         const btn = document.getElementById("launch");
 
@@ -47,9 +47,9 @@ export default class extends Controller {
         const title = document.getElementById("title");
         const challenge_title = title.dataset.challenge;
         const createT = () => {
-          let h1 = document.createElement('h1');
-          h1.textContent = `Ta participation "${challenge_title}" est enregistrée!`;
-          insertAfter(h1, title);
+          let h2 = document.createElement('h2');
+          h2.textContent = `Ta participation "${challenge_title}" est enregistrée!`;
+          insertAfter(h2, title);
           title.style.display = 'none';
         }
         setTimeout(createT, 1000);
@@ -58,9 +58,9 @@ export default class extends Controller {
         const challenge_debut = debut.dataset.challengeDebut;
         const challenge_time_left = debut.dataset.challengeTimeLeft;
         const createH = () => {
-        let h6 = document.createElement('h6');
-        h6.textContent = `Il se déroulera sur ${challenge_debut} jours, il te reste donc ${challenge_time_left} jours de participation`;
-        insertAfter(h6, debut);
+        let p = document.createElement('p');
+        p.textContent = `Il se déroulera sur ${challenge_debut} jours, c'est parti pour ${challenge_time_left} jours! 🚀`;
+        insertAfter(p, debut);
         debut.style.display = 'none';
       }
         setTimeout(createH, 1000);

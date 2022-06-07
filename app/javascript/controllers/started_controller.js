@@ -7,6 +7,8 @@ export default class extends Controller {
   }
 
   status(event) {
+
+    // à enlever ? redescends lors du changement de show
     event.preventDefault()
     fetch(this.updateUrlValue, {
       method: "POST",
@@ -17,9 +19,11 @@ export default class extends Controller {
     .then(response => {
 
       const btn = document.getElementById("launch2");
-      btn.textContent = 'Le challenge se charge...';
+      btn.textContent = "✨GO!✨";
 
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload();
+        }, 1000);
     })
   }
 }
