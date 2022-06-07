@@ -52,6 +52,11 @@
                         <% end %>
                       <% end %>
                     <% end %>
+                    <div>
+                      <% ratio = @progression_count*100/@challenge.total_time%>
+                      <%= image_tag "#{ratio.round(-1)}.svg"%>
+                      <%= @progression_count %> jours - <%= user.name %>
+                    </div>
                   <% end %>
                 <% end %>
               </ul>
