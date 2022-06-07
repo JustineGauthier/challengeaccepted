@@ -1,12 +1,15 @@
 <div class="container">
-  <div class="w-100 text-center">
-      <div>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+  <div class="flexbox">
+    <div >
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+    </div>
+      <div class="text-center">
+        <h1>CHALLENGE ACCEPTED</h1>
       </div>
-    <h1>CHALLENGE ACCEPTED</h1>
-      <div>
-        <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
-      </div>
+        <div>
+          <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
+        </div>
+  </div>
       <div>
       <p>Hey, <%= @user.name %></p>
         <p><strong><%= @user.total_points %></strong> 🏆</p>
@@ -16,7 +19,6 @@
           <p>Accomplis une progression pour gagner tes premiers points !</p>
         <% end %>
       </div>
-  </div>
   <div class='validation_progression'>
     <h2>Tes progressions à valider :</h2>
     <div>
