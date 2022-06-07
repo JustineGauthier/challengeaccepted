@@ -1,12 +1,12 @@
 .card2 {
-  width: 12rem;
-  height: 12rem;
-  text-align: center;
+  width:8rem;
+  height:8rem;
+  text-align: left;
+  line-height: 12px;
   box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
   border-radius: 30px;
-  padding: 8px;
   margin: 16px;
-  background-image: asset_url('fond-carte.svg');
+  background-image: asset_url('essai-back.jpg');
   background-size: cover;
 }
 
@@ -22,6 +22,11 @@
 }
 
 .card-body {
-  padding-top: 5rem;
-  text-decoration: none;
+  font-size: 12px;
+  padding-top: 48px;
+}
+
+.card-body h3 {
+  font-size: 16px;
+  line-height: 15px;
 }
