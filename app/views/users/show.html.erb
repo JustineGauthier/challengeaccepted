@@ -55,42 +55,35 @@
   <div>
     <h2>Tes challenges en cours:</h2>
       <% @challenges.each do |challenge| %>
-        <div class="card2">
           <ul class="list-inline">
-            <% @participations.each do |participation| %>
-              <% participation.progressions.each do |progression| %>
-                <% if progression.done %>
-                  <% @progression_count %>
-                <% end %>
-              <% end %>
-            <% end %>
             <% if challenge.end_date > Date.yesterday %>
-              <% time_left = (challenge.end_date - Date.today).to_i %>
-              <li>
-                <%= link_to challenge_path(challenge) do %>
-                  <strong><%= challenge.title %></strong>
-                  <div>Se termine dans : <%= time_left %> jours</div>
-                <% end %>
-              </li>
+              <div class="card2" >
+                  <% time_left = (challenge.end_date - Date.today).to_i %>
+                    <li>
+                      <div class="card-body">
+                        <%= link_to challenge_path(challenge) do %>
+                          <strong><%= challenge.title %></strong>
+                          <div>Se termine dans : <%= time_left %> jours</div>
+                        <% end %>
+                      </div>
+                    </li>
+              </div>
             <% end %>
           </ul>
-        </div>
-     <% end %>
+      <% end %>
   </div>
-
   <div>
     <h2>Tes anciens challenges :</h2>
       <% @challenges.each do |challenge| %>
-        <div class="card2">
-          <%= image_tag "petite-forme.svg", class: "sticky-top ml-20" %>
-            <% if challenge.end_date < Date.today %>
-              <li>
-                <%= link_to challenge_path(challenge) do %>
+        <% if challenge.end_date < Date.today %>
+          <div class="card2">
+            <div class="card-body">
+              <%= link_to challenge_path(challenge) do %>
                 <%= challenge.title %>
-              </li>
-            <% end %>
-          <% end %>
-        </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
   </div>
 </div>
