@@ -2,20 +2,20 @@
   <div class="container">
     <div class="col-12 d-flex justify-content-center">
       <div class='col-12 my-5'>
-        <h1 class="text-center">Crée ton challenge!</h1><br>
+        <h1 class="text-center">Créé ton challenge!</h1><br>
           <%= simple_form_for(@challenge) do |f| %>
               <%= f.input :title,
-                          label: "Choisis un titre",
+                          label: "Trouve un super titre!",
                           autofocus: true %>
               <%= f.input :description,
-              label: "Décris au mieux ton challenge:" %>
+              label: "Décris le challenge à tes potes:" %>
               <%= f.input :start_date, as: :date, html5: true,
-              label: "Quand commence ton challenge ?" %>
+              label: "Vous commencez quand?" %>
               <%= f.input :end_date, as: :date, html5: true,
-              label: "Il se termine quand ?" %>
+              label: "Et la date de fin?" %>
               <p><%= "A quelle fréquence veux-tu effectuer ce challenge ?" %></p>
               <%= f.select :frequency,
-              [ 'Quotidien','Hebdomadaire','Unique' ],
+              [ 'Quotidiennement','Une fois par semaine','Une seule fois' ],
               prompt: 'Fais ton choix' %>
               <p> </p>
               <%= f.submit "Enregistrer ce challenge", class:"btn btn-primary" %>
