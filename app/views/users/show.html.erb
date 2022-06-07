@@ -1,24 +1,26 @@
 <div class="container">
-  <div class="flexbox">
-    <div >
-      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-    </div>
-      <div class="text-center">
-        <h1>CHALLENGE ACCEPTED</h1>
+  <div class="top-show-user">
+    <div class="flexbox">
+      <div >
+        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       </div>
+        <div class="text-center" id="title">
+          <h1 class="title">CHALLENGE ACCEPTED</h1>
+        </div>
+          <div>
+            <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
+          </div>
+    </div>
         <div>
-          <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
+        <p>Hey, <%= @user.name %> !</p>
+          <p><strong><%= @user.total_points %></strong> 🏆</p>
+          <% if @user.total_points.positive? %>
+            <p>Wow, tu te surpasses!</p>
+          <% else %>
+            <p>Accomplis une progression pour gagner tes premiers points !</p>
+          <% end %>
         </div>
   </div>
-      <div>
-      <p>Hey, <%= @user.name %></p>
-        <p><strong><%= @user.total_points %></strong> 🏆</p>
-        <% if @user.total_points.positive? %>
-          <p>Wow, tu te surpasses!</p>
-        <% else %>
-          <p>Accomplis une progression pour gagner tes premiers points !</p>
-        <% end %>
-      </div>
   <div class='validation_progression'>
     <h2>Tes progressions à valider :</h2>
     <div>
