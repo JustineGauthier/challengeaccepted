@@ -57,13 +57,6 @@
       <% @challenges.each do |challenge| %>
         <div class="card2">
           <ul class="list-inline">
-            <% @participations.each do |participation| %>
-              <% participation.progressions.each do |progression| %>
-                <% if progression.done %>
-                  <% @progression_count %>
-                <% end %>
-              <% end %>
-            <% end %>
             <% if challenge.end_date > Date.yesterday %>
               <% time_left = (challenge.end_date - Date.today).to_i %>
               <li>
