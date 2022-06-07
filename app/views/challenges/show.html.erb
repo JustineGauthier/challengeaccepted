@@ -21,8 +21,23 @@
               <h2>Les participant·e·s au challenge :</h2>
               <ul>
                 <% @users.each do |user| %>
-                  <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill</li> %>
+                  <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill%>
                   <%= user.name %>:
+                  <% @participations.each do |participation| %>
+                    <% if participation.user_id == user.id %>
+                      <% @progression_count = 0 %>
+                      <% participation.progressions.each do |progression| %>
+                        <% if progression.done %>
+                          <% @progression_count += progression.points %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                    <%= @progression_count %> points.</li>
+                  <% end %>
+                <% end %>
+              </ul>
+              <ul>
+                <% @users.each do |user| %>
                   <% @participations.each do |participation| %>
                     <% if participation.user_id == user.id %>
                       <% @progression_count = 0 %>
@@ -32,7 +47,8 @@
                         <% end %>
                       <% end %>
                     <% end %>
-                    <%= @progression_count %> points.</li>
+                    <li><div><%= @progression_count %> jours</div>
+                    <%= user.name %></li>
                   <% end %>
                 <% end %>
               </ul>
