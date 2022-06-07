@@ -1,0 +1,24 @@
+<svg width="406" height="326" viewBox="0 0 406 326" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_37_21)">
+<rect width="406" height="326" rx="45" fill="white"/>
+<rect x="-1" y="-70" width="408" height="267" rx="50" fill="#4F51AA"/>
+<rect x="177.094" y="210.889" width="50.2688" height="128.827" fill="white"/>
+<rect y="126" width="227.162" height="113" rx="45" fill="#FFE8CE"/>
+<mask id="mask0_37_21" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="104" width="228" height="310">
+<rect x="0.0603027" y="104" width="227.303" height="309.798" rx="44" fill="#FFE8CE"/>
+</mask>
+<g mask="url(#mask0_37_21)">
+<rect x="-6.35254" y="185" width="44.1779" height="99" rx="22.089" fill="#FFE8CE"/>
+</g>
+<rect x="0.69751" y="239" width="227.303" height="325.135" rx="45" fill="white"/>
+<ellipse cx="332.233" cy="217.005" rx="57.9356" ry="57.0055" fill="white"/>
+<ellipse cx="332.233" cy="217.005" rx="38.3911" ry="37.7747" fill="#FFDE81"/>
+<ellipse cx="262.431" cy="233.489" rx="24.4307" ry="24.0385" fill="#4F51AA"/>
+<ellipse cx="346.193" cy="273.324" rx="11.8663" ry="11.6758" fill="#FD8FA4"/>
+</g>
+<defs>
+<clipPath id="clip0_37_21">
+<rect width="406" height="326" rx="45" fill="white"/>
+</clipPath>
+</defs>
+</svg>

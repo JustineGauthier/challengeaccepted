@@ -1,5 +1,13 @@
 .flexbox {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 12px;
+}
+
+.container {
+  background-image: asset_url('fond-container.svg');
+  background-size: cover;
+}
+
+.title {
+  color: white;
 }
