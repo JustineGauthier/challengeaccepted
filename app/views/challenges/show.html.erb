@@ -5,51 +5,44 @@
         <%# CAS: challenge terminé // DONE %>
         <% if @challenge.started %>
           <% if @challenge.end_date < Date.today %>
-              <div class="w-200 text-center my-5">
-                <h2>Le challenge "<%= @challenge.title %>" s'est terminé le <%= @challenge.end_date %></h2>
-              <div class="card3 mt-5">
+            <div class="w-200 text-center my-5">
+              <h2>Le challenge "<%= @challenge.title %>" s'est terminé le <%= @challenge.end_date %></h2>
+              <div class="card2 mt-5">
                 <h6>Durée totale : <%= @challenge.total_time %> jours.</h6>
                 <p>🎉 Tu as effectué <%= @progression_count_current_user %> jours de challenge, et remporté <%= @total_points_count %> points! 🎉</p>
               </div>
-                <p class="mt-4"><em>Nostalgique ? Tu peux toujours refaire ce challenge ou en créer un autre <%= link_to "ici", new_challenge_path %>!<em></p>
-              </div>
-            <% else %>
+              <p class="mt-4"><em>Nostalgique ? Tu peux toujours refaire ce challenge ou en créer un autre <%= link_to "ici", new_challenge_path %>!<em></p>
+            </div>
 
-        <%# CAS: challenge lancé, en cours %>
-        <div class='challenge-description'>
-          <div class="card3 my-4">
-            <h1 class="text-center">"<%= @challenge.title.capitalize %>" est lancé!</h1>
-            <p>Wouhou! Tu participes actuellement à ce challenge 🚀</p>
-          </div>
-            <p class="blockquote">"<%= @challenge.description %>"</p>
-            <figcaption class="blockquote-footer text-right"><%= @creator.name %></figcaption>
-          <div class="card3">
-            <h4>Tous les participant·e·s</h4>
-              <% @users.each do |user| %>
-                <div>
-                  <li><%= cl_image_tag user.photo.key, crop: :fill, id:"avatar" %></li>
-                  <li><small><%= user.name.capitalize %></small></li>
-                </div>
-              <% end %>
-          </div>
-          <div class="card3 my-4">
-            <h4>Les progressions</h4>
-          <div class="progression">
-              <ul class="text-left mt-4">
-                <% @users.each do |user| %>
-                <li><strong><%= user.name.capitalize %></strong>, <em><%= @progression_count %><em> jours</li>
-                <li><% @participations.each do |participation| %>
-                    <% if participation.user_id == user.id %>
-                      <% @progression_count = 0 %>
-                      <% participation.progressions.each do |progression| %>
-                        <% if progression.done %>
-                          <% @progression_count += progression.points %>
+          <%# CAS: challenge lancé, en cours %>
+          <% else %>
+            <div class='challenge-description'>
+              <div class="card2 my-4">
+                <h1 class="text-center">"<%= @challenge.title.capitalize %>" est lancé!</h1>
+                <p>Wouhou! Tu participes actuellement à ce challenge 🚀</p>
+              </div>
+              <p>"<%= @challenge.description %>"</p>
+              <p class="text-center mb-3"><em>Wow, quelle description...</em></p>
+              <div class="card2 my-4">
+                <h4>Score des participant·e·s</h4>
+                <ul class="text-left">
+                  <% @users.each do |user| %>
+                    <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill, id:"avatar" %> <strong><%= user.name %>: </strong></li>
+                    <li class="ms-5">
+                      <% @participations.each do |participation| %>
+                        <% if participation.user_id == user.id %>
+                          <% @progression_count = 0 %>
+                          <% participation.progressions.each do |progression| %>
+                            <% if progression.done %>
+                              <% @progression_count += progression.points %>
+                            <% end %>
+                          <% end %>
                         <% end %>
                       <% end %>
-                    <% end %>
-                <% end %>
-              <% end %>
-              </ul>
+                      <%= @progression_count %> points
+                    </li>
+                  <% end %>
+                </ul>
                 <ul>
                   <% @users.each do |user| %>
                     <% @participations.each do |participation| %>
@@ -63,74 +56,75 @@
                       <% end %>
                       <div>
                         <% ratio = @progression_count*100/@challenge.total_time%>
-                        <%= image_tag "#{ratio.round(-1)}.svg"%><br>
+                        <%= image_tag "#{ratio.round(-1)}.svg" %>
+                        <%= @progression_count %> jours - <%= user.name %>
                       </div>
-                      <% end %>
                     <% end %>
-                  </ul>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <p><strong>Date de fin:</strong> <em><%= @challenge.end_date %></em>,<br>Il te reste <%= @time_left %> jours pour te surpasser!</p>
+          <% end %>
+
+        <%# CAS: challenge prêt à être lancé, invitation amis %>
+        <% else %>
+          <h2 id="title", class="text-center mb-3" data-challenge="<%= @challenge.title %>">
+            "<%= @challenge.title %>" est prêt à être lancé!
+          </h2>
+          <p>Plutôt ambitieux... Prêt à récolter des points?</p>
+          <p
+            id="debut"
+            data-challenge-debut="<%= @challenge.total_time %>"
+            data-challenge-time-left="<%= @time_left %>">
+            <strong>Début:</strong> <%= @challenge.start_date %>,<br><strong>Durée:</strong> <%= @challenge.total_time %> jours.
+          </p>
+          <% if current_user == @creator %>
+            <div class="card2">
+              <p><strong>Description</strong></p>
+              <p><%= @challenge.description %></p>
+              <div
+                data-controller="share"
+                data-share-id-value= <%= @challenge.id %>
+                data-share-title-value= <%= @challenge.title %>
+                data-share-creator-value= <%= @creator.name %>>
+                  <p class= "btn btn-primary" data-action="click->share#shareLink"> Invite tes potes! </p>
+              </div>
+            </div>
+          <% else %>
+            <div class="card2">
+              <div class="enter-challenge">
+                <div data-controller='enter-challenge'
+                  data-enter-challenge-target="card-enter"
+                  data-enter-challenge-create-url-value= "<%= participations_path %>"
+                  data-enter-challenge-user-id-value= "<%= current_user.id %>"
+                  data-enter-challenge-challenge-id-value= "<%= @challenge.id %>">
+
+                      <%# CAS: invation reçue au challenge %>
+                  <h2 id="title", class="text-center mb-3" data-challenge="<%= @challenge.title %>">
+                    "<%= @challenge.title %>" est prêt à être lancé!
+                  </h2>
+                  <div class="card2 my-4 text-center">
+                    <p>Veux-tu y participer?</p>
+                    <button id="launch" class="btn btn-primary" data-action="click->enter-challenge#accept">
+                      Let's go!
+                    </button>
+                    <button class="btn btn-primary" data-action="click->enter-challenge#refuse">
+                      Nope
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          <div>
-            <p class="mt-3"><strong>Date de fin:</strong> <em><%= @challenge.end_date %></em>,<br>Il te reste <%= @time_left %> jours pour te surpasser!</p>
-          </div>
-        <% end %>
-      <% else %>
+          <% end %>
+          <h5>Participant·e·s validés:</h5>
+          <% @users.each do |user| %>
+            <ul class="text-left in-line">
+              <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill, id:"avatar" %> <strong><%= user.name %></strong></li>
+            </ul>
+          <% end %>
 
-      <%# CAS: challenge prêt à être lancé, invitation amis %>
-        <h2 id="title", class="text-center mb-3" data-challenge="<%= @challenge.title %>">
-          "<%= @challenge.title %>" est prêt à être lancé!
-        </h2>
-        <p>Plutôt ambitieux... Prêt à récolter des points?</p>
-        <p
-          id="debut"
-          data-challenge-debut="<%= @challenge.total_time %>"
-          data-challenge-time-left="<%= @time_left %>">
-          <strong>Début:</strong> <%= @challenge.start_date %>,<br><strong>Durée:</strong> <%= @challenge.total_time %> jours.
-        </p>
-      <div class="card3 mb-3">
-        <p><strong>Description</strong></p>
-        <p><%= @challenge.description %></p>
-        <% if current_user == @creator %>
-          <div data-controller="share" data-share-id-value= <%= @challenge.id %>  data-share-title-value= <%= @challenge.title %> data-share-creator-value= <%= @creator.name %>>
-            <p class= "btn btn-primary" data-action="click->share#shareLink"> Invite tes potes! </p>
-          </div>
-      </div>
-      <div class="card3">
-        <div class="enter-challenge">
-          <div data-controller='enter-challenge'
-            data-enter-challenge-target="card-enter"
-            data-enter-challenge-create-url-value= "<%= participations_path %>"
-            data-enter-challenge-user-id-value= "<%= current_user.id %>"
-            data-enter-challenge-challenge-id-value= "<%= @challenge.id %>">
-        <% else %>
-
-        <%# CAS: invation reçue au challenge %>
-        <h2 id="title", class="text-center mb-3" data-challenge="<%= @challenge.title %>">
-          "<%= @challenge.title %>" est prêt à être lancé!
-        </h2>
-          <div class="card3 my-4 text-center">
-            <p>Veux-tu y participer?</p>
-            <button id="launch" class="btn btn-primary" data-action="click->enter-challenge#accept">
-              Let's go!
-            </button>
-            <button class="btn btn-primary" data-action="click->enter-challenge#refuse">
-              Nope
-            </button>
-          </div>
-        </div>
-      </div>
-    <% end %>
-      <h5>Participant·e·s validés:</h5>
-      <p><em>Tout le monde est la? Lance le challenge!</em></p>
-      <% @users.each do |user| %>
-        <ul class="text-left in-line">
-          <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill, id:"avatar" %> <strong><%= user.name %></strong></li>
-        </ul>
-      <% end %>
-    <div>
-
-      <%# CAS: bouton "lancer le challenge" %>
+            <%# CAS: bouton "lancer le challenge" %>
           <% if current_user == @creator %>
             <div data-controller="started"
               data-started-update-url-value="<%=  started_challenge_path(@challenge) %>">
@@ -139,8 +133,8 @@
               </button>
             </div>
           <% end %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

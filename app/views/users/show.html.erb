@@ -1,12 +1,15 @@
 <div class="container">
-  <div class="w-100 text-center">
-      <div>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+  <div class="flexbox">
+    <div >
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+    </div>
+      <div class="text-center">
+        <h1>CHALLENGE ACCEPTED</h1>
       </div>
-    <h1>CHALLENGE ACCEPTED</h1>
-      <div>
-        <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
-      </div>
+        <div>
+          <%= cl_image_tag @user.photo.key, width: 400, height: 300, crop: :fill, id: "avatar" %>
+        </div>
+  </div>
       <div>
       <p>Hey, <%= @user.name %></p>
         <p><strong><%= @user.total_points %></strong> 🏆</p>
@@ -16,7 +19,6 @@
           <p>Accomplis une progression pour gagner tes premiers points !</p>
         <% end %>
       </div>
-  </div>
   <div class='validation_progression'>
     <h2>Tes progressions à valider :</h2>
     <div>
@@ -30,7 +32,7 @@
                     <div data-controller="validate-progression"
                         data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
                       <li>
-                        <strong><%= challenge.title %></strong>
+                        <h3><strong><%= challenge.title %></strong></h3>
                         <p>Se termine le <em><%= challenge.end_date %></em></p>
                         <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
                           ✔️
@@ -49,41 +51,46 @@
       <% end %>
     </div>
   </div>
+
   <div class="d-flex justify-content-center">
     <%= link_to "Créé un challenge!", new_challenge_path, class: "btn btn-primary" %>
   </div>
-  <div>
+  <div class="app">
     <h2>Tes challenges en cours:</h2>
+    <ul class="hs full">
       <% @challenges.each do |challenge| %>
-        <div class="card2">
-          <ul class="list-inline">
-            <% if challenge.end_date > Date.yesterday %>
+        <% if challenge.end_date > Date.yesterday %>
+          <div class="card2 item" >
               <% time_left = (challenge.end_date - Date.today).to_i %>
-              <li>
-                <%= link_to challenge_path(challenge) do %>
-                  <strong><%= challenge.title %></strong>
-                  <div>Se termine dans : <%= time_left %> jours</div>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-     <% end %>
-  </div>
-
-  <div>
-    <h2>Tes anciens challenges :</h2>
-      <% @challenges.each do |challenge| %>
-        <div class="card2">
-          <%= image_tag "petite-forme.svg", class: "sticky-top ml-20" %>
-            <% if challenge.end_date < Date.today %>
-              <li>
-                <%= link_to challenge_path(challenge) do %>
-                <%= challenge.title %>
-              </li>
-            <% end %>
-          <% end %>
-        </div>
+                <li>
+                  <div class="card-body">
+                    <%= link_to challenge_path(challenge) do %>
+                      <h3><strong><%= challenge.title %></strong></h3>
+                      <div>Se termine dans : <%= time_left %> jours</div>
+                    <% end %>
+                  </div>
+                </li>
+          </div>
+        <% end %>
       <% end %>
+    </ul>
+  </div>
+  <div class="app">
+    <h2>Tes anciens challenges :</h2>
+    <ul class="hs full">
+      <% @challenges.each do |challenge| %>
+        <% if challenge.end_date < Date.today %>
+          <div class="card2 item">
+            <li>
+              <div class="card-body">
+                <%= link_to challenge_path(challenge) do %>
+                  <h3><strong><%= challenge.title %></strong></h3>
+                <% end %>
+              </div>
+            </li>
+          </div>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
 </div>

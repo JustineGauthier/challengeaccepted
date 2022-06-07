@@ -1,10 +1,12 @@
 .card2 {
-  width: 18rem;
-  text-align: center;
-  box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+  width:8rem;
+  height:8rem;
+  text-align: left;
+  line-height: 12px;
+  box-shadow: 0 0 20px 4px rgba(0,0,0,0.06);
   border-radius: 30px;
-  padding: 8px;
-  margin: 8px;
+  background-image: asset_url('essai-back.jpg');
+  background-size: cover;
 }
 
 #challenge-frequency {
@@ -12,4 +14,69 @@
   padding: 8px;
   margin: 8px;
   width: 100%;
+}
+
+#title {
+  text-decoration: none;
+}
+
+.card-body {
+  font-size: 12px;
+  padding-top: 48px;
+}
+
+.card-body h3 {
+  font-size: 16px;
+  line-height: 15px;
+}
+
+:root {
+  --gutter: 6px;
+}
+
+.app {
+  padding: var(--gutter) 0;
+  display: grid;
+  grid-gap: var(--gutter) 0;
+  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  align-content: start;
+}
+
+.app > * {
+  grid-column: 2 / -2;
+}
+
+.app > .full {
+  grid-column: 1 / -1;
+}
+
+.hs {
+  display: grid;
+  grid-gap: calc(var(--gutter) / 2);
+  grid-template-columns: 1px repeat(var(--total), calc(50% - var(--gutter) * 2)) 1px;
+  grid-template-rows: minmax(150px, 1fr);
+
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  padding-bottom: calc(.75 * var(--gutter));
+  margin-bottom: calc(-.25 * var(--gutter));
+}
+
+.hs:before,
+.hs:after {
+  content: '';
+}
+
+.hs > li,
+.item {
+  scroll-snap-align: center;
+  padding: calc(var(--gutter) / 2 * 1.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hs::-webkit-scrollbar {
+  display: none;
 }
