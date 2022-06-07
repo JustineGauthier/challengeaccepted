@@ -30,7 +30,7 @@
                     <div data-controller="validate-progression"
                         data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
                       <li>
-                        <strong><%= challenge.title %></strong>
+                        <h3><strong><%= challenge.title %></strong></h3>
                         <p>Se termine le <em><%= challenge.end_date %></em></p>
                         <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
                           ✔️
@@ -49,41 +49,46 @@
       <% end %>
     </div>
   </div>
+
   <div class="d-flex justify-content-center">
     <%= link_to "Créé un challenge!", new_challenge_path, class: "btn btn-primary" %>
   </div>
-  <div>
+  <div class="app">
     <h2>Tes challenges en cours:</h2>
+    <ul class="hs full">
       <% @challenges.each do |challenge| %>
-          <ul class="list-inline">
-            <% if challenge.end_date > Date.yesterday %>
-              <div class="card2" >
-                  <% time_left = (challenge.end_date - Date.today).to_i %>
-                    <li>
-                      <div class="card-body">
-                        <%= link_to challenge_path(challenge) do %>
-                          <h3><strong><%= challenge.title %></strong></h3>
-                          <div>Se termine dans : <%= time_left %> jours</div>
-                        <% end %>
-                      </div>
-                    </li>
-              </div>
-            <% end %>
-          </ul>
-      <% end %>
-  </div>
-  <div>
-    <h2>Tes anciens challenges :</h2>
-      <% @challenges.each do |challenge| %>
-        <% if challenge.end_date < Date.today %>
-          <div class="card2">
-            <div class="card-body">
-              <%= link_to challenge_path(challenge) do %>
-                <%= challenge.title %>
-              <% end %>
-            </div>
+        <% if challenge.end_date > Date.yesterday %>
+          <div class="card2 item" >
+              <% time_left = (challenge.end_date - Date.today).to_i %>
+                <li>
+                  <div class="card-body">
+                    <%= link_to challenge_path(challenge) do %>
+                      <h3><strong><%= challenge.title %></strong></h3>
+                      <div>Se termine dans : <%= time_left %> jours</div>
+                    <% end %>
+                  </div>
+                </li>
           </div>
         <% end %>
       <% end %>
+    </ul>
+  </div>
+  <div class="app">
+    <h2>Tes anciens challenges :</h2>
+    <ul class="hs full">
+      <% @challenges.each do |challenge| %>
+        <% if challenge.end_date < Date.today %>
+          <div class="card2 item">
+            <li>
+              <div class="card-body">
+                <%= link_to challenge_path(challenge) do %>
+                  <h3><strong><%= challenge.title %></strong></h3>
+                <% end %>
+              </div>
+            </li>
+          </div>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
 </div>
