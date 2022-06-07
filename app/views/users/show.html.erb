@@ -31,11 +31,12 @@
               <% if progression.done == false && progression.date < Date.tomorrow %>
                 <% if participation.user_id == current_user.id %>
                   <ul>
-                    <div data-controller="validate-progression"
-                        data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
+                    <div class="progression_card"
+                      data-controller="validate-progression"
+                      data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
                       <li>
                         <h3><strong><%= challenge.title %></strong></h3>
-                        <p>Se termine le <em><%= challenge.end_date %></em></p>
+                        <p>Progression du <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
                         <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
                           ✔️
                         </button>
@@ -57,12 +58,12 @@
   <div class="d-flex justify-content-center">
     <%= link_to "Créé un challenge!", new_challenge_path, class: "btn btn-primary" %>
   </div>
-  <div class="app">
+  <div>
     <h2>Tes challenges en cours:</h2>
-    <ul class="hs full">
+    <ul class="scroll">
       <% @challenges.each do |challenge| %>
         <% if challenge.end_date > Date.yesterday %>
-          <div class="card2 item" >
+          <div class="card2" >
               <% time_left = (challenge.end_date - Date.today).to_i %>
                 <li>
                   <div class="card-body">
@@ -77,12 +78,12 @@
       <% end %>
     </ul>
   </div>
-  <div class="app">
+  <div>
     <h2>Tes anciens challenges :</h2>
-    <ul class="hs full">
+    <ul class="scroll">
       <% @challenges.each do |challenge| %>
         <% if challenge.end_date < Date.today %>
-          <div class="card2 item">
+          <div class="card2">
             <li>
               <div class="card-body">
                 <%= link_to challenge_path(challenge) do %>
