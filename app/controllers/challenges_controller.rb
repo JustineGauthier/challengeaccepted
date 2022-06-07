@@ -85,11 +85,11 @@ class ChallengesController < ApplicationController
 
   def create_progressions(challenge, participation)
     case challenge.frequency
-    when "Quotidien"
+    when "Quotidiennement"
       daily_progression(challenge, participation)
-    when "Hebdomadaire"
+    when "Une fois par semaine"
       weekly_progression(challenge, participation)
-    when "Unique"
+    when "Une seule fois à la fin"
       monthly_progression(challenge, participation)
     end
   end
