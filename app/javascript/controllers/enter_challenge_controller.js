@@ -6,25 +6,21 @@ function insertAfter(newNode, existingNode) {
 }
 
 export default class extends Controller {
-  static targets = ["cardEnter"]
+  static targets = ["cardEnter", 'canard', 'poule', 'oie']
   static values = {
     createUrl: String,
     userId: String,
     challengeId: String
   }
 
+  connect() {
+    console.log('hello')
+  }
   accept(event) {
-
     var formData = new FormData();
     formData.append('challenge_id', this.challengeIdValue);
     formData.append('user_id', this.userIdValue);
     console.log(formData)
-
-    // new
-    const controllerCard = this.element;
-    const goBtn = controllerCard.querySelector('.btn-go');
-    const nopBtn = controllerCard.querySelector('.btn-nop');
-    //
 
     event.preventDefault()
 
@@ -37,19 +33,19 @@ export default class extends Controller {
       body: formData
     })
       .then(response => {
-        this.element.remove();
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000);
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-
-        const btn = document.getElementById("launch");
+        const canard = this.canardTarget
 
         const createP = () => {
           let p = document.createElement('p');
           p.textContent = "Ta participation a bien été confirmée, have fun!";
-          insertAfter(p, btn);
-          btn.style.display = 'none';
+          insertAfter(p, canard);
+          canard.remove()
+          this.pouleTarget.remove()
+          this.oieTarget.remove()
         }
         // remove?
         setTimeout(createP, 1000);
@@ -62,11 +58,6 @@ export default class extends Controller {
           h2.textContent = `Ta participation "${challenge_title}" est enregistrée!`;
           insertAfter(h2, title);
           title.style.display = 'none';
-
-         // new
-          goBtn.style.display = 'none';
-          nopBtn.style.display = 'none';
-          //
         }
         setTimeout(createT, 1000);
 
@@ -81,6 +72,8 @@ export default class extends Controller {
       }
         setTimeout(createH, 1000);
       } )
+
+    // this.element.remove();
   }
 
   refuse(event) {
