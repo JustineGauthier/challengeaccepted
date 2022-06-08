@@ -23,29 +23,31 @@
           <% end %>
   <div class='validation_progression'>
     <h2>Tes progressions à valider :</h2>
-    <div>
+    <div class="my-3">
       <% @challenges.each do |challenge| %>
         <% if challenge.end_date > Date.yesterday %>
           <% challenge.participations.each do |participation| %>
             <% participation.progressions.each do |progression| %>
               <% if progression.done == false && progression.date < Date.tomorrow %>
                 <% if participation.user_id == current_user.id %>
-                  <ul>
-                    <div class="progression_card"
-                      data-controller="validate-progression"
-                      data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
-                      <li>
+                  <div class="progression_card d-flex justify-content-center"
+                    data-controller="validate-progression"
+                    data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
+                    <div class="w-100 d-flex justify-content-between">
+                      <div class="body4 flex-grow-1">
                         <h3><strong><%= challenge.title %></strong></h3>
                         <p>Progression du <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
+                      </div>
+                      <div class="d-flex align-items-center">
                         <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
-                          ✔️
+                          <i class="fas fa-check"></i>
                         </button>
-                        <button class="btn btn-not-valid btn-primary" data-action="click->validate-progression#nop">
-                          ❌
+                        <button class="btn btn-not-valid btn-primary ms-2" data-action="click->validate-progression#nop">
+                          <i class="fas fa-times"></i>
                         </button>
-                      </li>
+                      </div>
                     </div>
-                  </ul>
+                  </div>
                 <% end %>
               <% end %>
             <% end %>
@@ -55,28 +57,28 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-center">
-    <%= link_to "Créé un challenge!", new_challenge_path, class: "btn btn-primary" %>
+  <div class="d-flex justify-content-center" >
+    <%= link_to "Créé un challenge!", new_challenge_path, class: "btn"%>
   </div>
   <div>
     <h2>Tes challenges en cours:</h2>
-    <ul class="scroll">
+    <div class="scroll">
       <% @challenges.each do |challenge| %>
         <% if challenge.end_date > Date.yesterday %>
           <div class="card2" >
               <% time_left = (challenge.end_date - Date.today).to_i %>
-                <li>
+
                   <div class="card-body">
                     <%= link_to challenge_path(challenge) do %>
                       <h3><strong><%= challenge.title %></strong></h3>
                       <div>Se termine dans : <%= time_left %> jours</div>
                     <% end %>
                   </div>
-                </li>
+
           </div>
         <% end %>
       <% end %>
-    </ul>
+    </div>
   </div>
   <div>
     <h2>Tes anciens challenges :</h2>
