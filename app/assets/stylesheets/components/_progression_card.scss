@@ -1,4 +1,23 @@
 .progression_card {
-  box-shadow: 0 0 20px 4px rgba(0,0,0,0.06);
+  box-shadow: 0 0 10px 4px rgba(0,0,0,0.08);
   background-color: #F4F5FE;
+  border-radius: 15px;
+  font-size: 14px;
+  padding: 4px 24px;
+  margin: 10px 6px;
+}
+
+.progression_card button {
+  color: white;
+  width: 10vw;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.progression_card h3 {
+  font-size: 16px;
+}
+
+.body4 {
+  line-height: 0px;
 }
