@@ -15,7 +15,7 @@
         <h2 class="greeting">Hey, <%= @user.name %> !</h2>
         </div>
   </div>
-          <p><strong><%= @user.total_points %></strong> 🏆</p>
+          <p><strong><%= @user.total_points %></strong> points 🏆</p>
           <% if @user.total_points.positive? %>
             <p>Wow, tu te surpasses!</p>
           <% else %>
