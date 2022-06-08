@@ -100,29 +100,21 @@
                 </div>
             <% else %>
               <div class="card3 text-center my-4">
-                <div class="enter-challenge">
-                  <div data-controller='enter-challenge'
-                    data-enter-challenge-target="card-enter"
-                    data-enter-challenge-create-url-value= "<%= participations_path %>"
-                    data-enter-challenge-user-id-value= "<%= current_user.id %>"
-                    data-enter-challenge-challenge-id-value= "<%= @challenge.id %>">
-                  </div>
-                </div>
-              </div>
-          </div>
+                <div data-controller='enter-challenge'
+                  data-enter-challenge-target="cardEnter"
+                  data-enter-challenge-create-url-value= "<%= participations_path %>"
+                  data-enter-challenge-user-id-value= "<%= current_user.id %>"
+                  data-enter-challenge-challenge-id-value= "<%= @challenge.id %>">
 
+                  <%# CAS: invitation reçue au challenge %>
 
-                        <%# CAS: invation reçue au challenge %>
-                    <div class="card3 text-center my-4">
-                      <p>Veux-tu y participer?</p>
-                      <button id="launch" class="btn btn-go btn-primary" data-action="click->enter-challenge#accept">
-                        Let's go!
-                      </button>
-                      <button class="btn btn-nop btn-primary" data-action="click->enter-challenge#refuse">
-                        Nope
-                      </button>
-                    </div>
-                  </div>
+                  <p data-enter-challenge-target="canard">Veux-tu y participer?</p>
+                  <button data-enter-challenge-target="poule" class="btn btn-go btn-primary" data-action="click->enter-challenge#accept">
+                    Let's go!
+                  </button>
+                  <button data-enter-challenge-target="oie" class="btn btn-nop btn-primary" data-action="click->enter-challenge#refuse">
+                    Nope
+                  </button>
                 </div>
               </div>
             <% end %>

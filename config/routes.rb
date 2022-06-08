@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
   resources :participations, only: [:show, :create]
-  resources :progressions, only: [:index, :create, :update] do
+  resources :progressions, only: [:index, :create, :update, :destroy] do
     post :done, on: :member
   end
 end

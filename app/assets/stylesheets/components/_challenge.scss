@@ -3,8 +3,11 @@
   text-align: center;
   box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
   border-radius: 20px;
-  padding: 8px;
+  padding: 16px;
   margin: auto;
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .top-show-challenge {
@@ -17,7 +20,5 @@
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: top;
-  // margin-top: -5px;
   margin: 0;
-  // text-align: center;
 }

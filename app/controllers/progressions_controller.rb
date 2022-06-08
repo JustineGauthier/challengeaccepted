@@ -17,6 +17,12 @@ class ProgressionsController < ApplicationController
     progression.save
   end
 
+  def destroy
+    progression = Progression.find(params[:id])
+    progression.destroy
+    redirect_to root_path
+  end
+
   def progression_params
     params.require(:progression).permit(:date, :done, :points, :new_points)
   end
