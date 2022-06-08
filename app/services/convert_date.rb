@@ -3,8 +3,8 @@ class ConvertDate
     @date = attributes[:date]
   end
 
-  DAYS = {'sun' => "dimanche", 'mon' => "lundi", 'tue' => "mardi", 'wed' => "mercredi",
-    'thu' =>"jeudi", 'fri' => "vendredi", 'sat' => "samedi"}
+  DAYS = {'sun' => "dim", 'mon' => "lun", 'tue' => "mar", 'wed' => "mer",
+    'thu' =>"jeu", 'fri' => "ven", 'sat' => "sam"}
   MONTHS = {'jan' => "janvier", 'feb' => "février", 'mar' => "mars", 'apr' => "avril",
   'may' => "mai", 'jun' => "juin", 'jul' => "juillet", 'aug' => "août",
   'sep'=> "septembre", 'oct' => "octobre", 'nov' => "novembre", 'dec' => "décembre"}
