@@ -30,9 +30,9 @@ export default class extends Controller {
       .then(response => {
         this.element.remove();
 
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 1000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
 
         const btn = document.getElementById("launch");
 
