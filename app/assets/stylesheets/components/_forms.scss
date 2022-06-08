@@ -32,3 +32,19 @@
   border-radius: 50%;
   border: 1px solid #4F51AA;
 }
+
+.fond-new-challenge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: asset_url('fond-new-challenge.svg');
+  //width: 100%;
+  height: 180px;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+#title-challenge-form {
+  color: white;
+  margin-bottom: 32px;
+}
