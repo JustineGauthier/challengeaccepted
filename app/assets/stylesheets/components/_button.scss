@@ -11,3 +11,12 @@
   color: #4F51AA;
   background-color: #F4F4F4;
 }
+
+.btn-home {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 24px
+  // position: sticky;
+  // bottom: 12px;
+}

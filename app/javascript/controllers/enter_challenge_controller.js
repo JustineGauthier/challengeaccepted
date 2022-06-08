@@ -14,11 +14,20 @@ export default class extends Controller {
   }
 
   accept(event) {
+
     var formData = new FormData();
     formData.append('challenge_id', this.challengeIdValue);
     formData.append('user_id', this.userIdValue);
     console.log(formData)
+
+    // new
+    const controllerCard = this.element;
+    const goBtn = controllerCard.querySelector('.btn-go');
+    const nopBtn = controllerCard.querySelector('.btn-nop');
+    //
+
     event.preventDefault()
+
     fetch(this.createUrlValue, {
       method: "POST",
       headers: {
@@ -42,15 +51,22 @@ export default class extends Controller {
           insertAfter(p, btn);
           btn.style.display = 'none';
         }
+        // remove?
         setTimeout(createP, 1000);
-
+        //
         const title = document.getElementById("title");
         const challenge_title = title.dataset.challenge;
+
         const createT = () => {
           let h2 = document.createElement('h2');
           h2.textContent = `Ta participation "${challenge_title}" est enregistrée!`;
           insertAfter(h2, title);
           title.style.display = 'none';
+
+         // new
+          goBtn.style.display = 'none';
+          nopBtn.style.display = 'none';
+          //
         }
         setTimeout(createT, 1000);
 
