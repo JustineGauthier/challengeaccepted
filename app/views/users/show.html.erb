@@ -39,17 +39,16 @@
                       <div class="body4 flex-grow-1">
                         <h3><strong><%= challenge.title %></strong></h3>
                         <p>Progression du <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
-                      </div>
-                      <div class="d-flex align-items-center">
-                        <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
-                          <i class="fas fa-check"></i>
-                        </button>
-                        <button class="btn btn-not-valid btn-primary ms-2" data-action="click->validate-progression#nop">
-                          <i class="fas fa-times"></i>
-                        </button>
+                        <div class="d-flex align-items-center">
+                          <button class="btn btn-valid btn-primary" data-action="click->validate-progression#validate">
+                            <i class="fas fa-check"></i>
+                          </button>
+                          <%= link_to progression_path(progression), class: 'btn btn-not-valid btn-primary', method: :delete do %>
+                            <i class="fas fa-times"></i>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
-                  </div>
                 <% end %>
               <% end %>
             <% end %>
