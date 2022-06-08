@@ -13,17 +13,21 @@
         <% end %>
       </div>
     </div>
-    <div>
-    <h2 class="greeting">Hey, <%= @user.name %> !</h2>
+    <div class="greeting">
+      <h2>Hey,</h2>
+      <h2><%= @user.name.capitalize %> !</h2>
     </div>
   </div>
-    <p><strong><%= @user.total_points %></strong> points 🏆</p>
+  <div class="d-flex flex-column text-center points">
+    <p>🏆</p>
+    <p><strong><%= @user.total_points %></strong> points</p>
     <% if @user.total_points.positive? %>
       <p>Wow, tu te surpasses!</p>
     <% else %>
       <p>Accomplis une progression pour gagner tes premiers points !</p>
     <% end %>
-   <div class='validation_progression'>
+  </div>
+  <div class='validation_progression'>
     <h2>Tes progressions à valider :</h2>
     <div class="my-3">
       <% @challenges.each do |challenge| %>
