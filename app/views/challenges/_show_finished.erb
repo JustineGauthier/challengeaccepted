@@ -4,9 +4,10 @@
   </div>
 </div>
   <div>
-    <h6 class="pb-3">Terminé depuis le <%= @challenge.end_date %>,<br>Durée totale : <%= @challenge.total_time %> jours.</h6>
+    <p class="pb-3"><strong>Terminé depuis le : </strong><%= ConvertDate.new(date: @challenge.end_date.strftime('%a %d %b')).call %>
+    <br><strong>Durée totale :</strong> <%= @challenge.total_time %> jours.</p>
     <div class="card3 text-center my-4">
-      <p>🎉 Tu as effectué <%= @progression_count_current_user %> jours de challenge, et remporté <%= @total_points_count %> points! 🎉</p>
+      <p>Tu as effectué <%= @progression_count_current_user %> jours de challenge, et remporté <%= @total_points_count %> points!</p>
     </div>
   <p class="my-4"><em>Nostalgique ? Tu peux toujours recréer ce challenge, ou en inventer un autre <%= link_to "ici", new_challenge_path %>!<em></p>
   </div>

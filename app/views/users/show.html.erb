@@ -20,9 +20,9 @@
 <div class="container">
   <div class="d-flex flex-column text-center points my-2">
     <i class="fas fa-trophy"></i>
-    <p><strong><%= @user.total_points %></strong> points</p>
+    <p class="text-larger"><strong><%= @user.total_points %></strong> points</p>
     <% if @user.total_points.positive? %>
-      <p>Wow, tu te surpasses!</p>
+      <p class="mb-2">Wow, tu te surpasses!</p>
     <% else %>
       <p class="mb-2">Accomplis une progression pour gagner tes premiers points !</p>
     <% end %>
@@ -41,8 +41,8 @@
                     data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
                     <div class="w-100 d-flex justify-content-between">
                       <div class="body4 flex-grow-1">
-                        <h3><strong><%= challenge.title %></strong></h3>
-                        <p>Le <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
+                        <h3 class="mb-2"><strong><%= challenge.title.capitalize %></strong></h3>
+                        <p class="no-margin">Le <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
                       </div>
                       <div class="d-flex align-items-center">
                         <button class="btn btn-valid" data-action="click->validate-progression#validate">
@@ -64,20 +64,20 @@
     <% end %>
   </div>
 </div>
-<div class="d-flex justify-content-center my-3  btn-go" >
-  <%= link_to "Crée un challenge!", new_challenge_path, class: "btn"%>
+<div class="d-flex justify-content-center my-3 mb-2 btn-go" >
+  <%= link_to "Crée un challenge!", new_challenge_path, class: "btn mt-3"%>
 </div>
 <div>
-  <h3 class="mt-3 mb-2">Tes challenges en cours:</h3>
-  <div class="scroll">
+  <h3 class="mt-3 mb-2 ms-1">Tes challenges en cours:</h3>
+  <div class="scroll ms-1">
     <% @challenges.each do |challenge| %>
       <% if challenge.end_date > Date.yesterday %>
         <div class="card2" >
            <% time_left = (challenge.end_date - Date.today).to_i %>
             <div class="card-body">
               <%= link_to challenge_path(challenge) do %>
-                <h3><strong><%= challenge.title %></strong></h3>
-                <div>Se termine dans : <%= time_left %> jours</div>
+                <h3 class="dark-font text-center"><strong><%= challenge.title.capitalize %></strong></h3>
+                <div class="dark-font">Se termine dans : <%= time_left %> jours</div>
               <% end %>
             </div>
           </div>
@@ -86,15 +86,16 @@
     </div>
   </div>
   <div>
-    <h3 class="mt-3 mb-2">Tes anciens challenges :</h3>
-    <ul class="scroll">
+    <h3 class="mt-3 mb-2 ms-1">Tes anciens challenges :</h3>
+    <ul class="scroll ms-1">
       <% @challenges.each do |challenge| %>
         <% if challenge.end_date < Date.today %>
-          <div class="card2">
+          <div class="card-finish">
             <li>
               <div class="card-body">
                 <%= link_to challenge_path(challenge) do %>
-                  <h3><strong><%= challenge.title %></strong></h3>
+                  <h3 class="dark-font text-center"><strong><%= challenge.title.capitalize %></strong></h3>
+                  <p>Terminé depuis le <%= ConvertDate.new(date: challenge.end_date.strftime('%a %d %b')).call %></p>
                 <% end %>
               </div>
             </li>

@@ -46,11 +46,14 @@
   <div class="card3 my-3  class="d-flex justify-content-around">
     <h5>Participant·e·s inscrits:</h5>
     <p class="pb-2"><em>Tout le monde est la?</em></p>
-    <% @users.each do |user| %>
-      <ul class="text-left in-line">
-        <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill, id:"avatar" %> <strong><%= user.name %></strong></li>
-      </ul>
-    <% end %>
+    <ul class="d-flex justify-content-around">
+      <% @users.each do |user| %>
+        <div class="d-flex flex-column justify-content-center">
+          <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill, class:"avatar2" %></li>
+          <li><strong><%= user.name %></strong></li>
+        </div>
+      <% end %>
+    </ul>
 
       <%# CAS: bouton "lancer le challenge" %>
     <% if current_user == @creator %>

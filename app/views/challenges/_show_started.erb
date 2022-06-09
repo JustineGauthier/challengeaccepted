@@ -18,8 +18,8 @@
     <ul class="d-flex justify-content-around">
       <% @users.each do |user| %>
         <div class="d-flex flex-column justify-content-center">
-          <li><%= cl_image_tag user.photo.key, id:"avatar" %></li>
-          <li><small><%= user.name.capitalize %></small></li>
+          <li><%= cl_image_tag user.photo.key, class:"avatar2" %></li>
+          <li><%= user.name.capitalize %></li>
         </div>
       <% end %>
     </ul>
