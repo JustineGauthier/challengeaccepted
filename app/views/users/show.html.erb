@@ -8,36 +8,42 @@
     </div>
     <div id="log-out">
       <%= link_to destroy_user_session_path, method: :delete do %>
-      <i class="fas fa-sign-out-alt"></i>
+        <i class="fas fa-sign-out-alt"></i>
       <% end %>
     </div>
   </div>
-  <h2 class="greeting">Hey, <%= @user.name %> !</h2>
+  <div class="greeting">
+    <h2>Hey,</h2>
+    <h2><%= @user.name.capitalize %> !</h2>
+  </div>
 </div>
 <div class="container">
-  <p><strong><%= @user.total_points %></strong> points 🏆</p>
-  <% if @user.total_points.positive? %>
-    <p>Wow, tu te surpasses!</p>
-  <% else %>
-    <p>Accomplis une progression pour gagner tes premiers points !</p>
-  <% end %>
+  <div class="d-flex flex-column text-center points">
+    <p>🏆</p>
+    <p><strong><%= @user.total_points %></strong> points</p>
+    <% if @user.total_points.positive? %>
+      <p>Wow, tu te surpasses!</p>
+    <% else %>
+      <p>Accomplis une progression pour gagner tes premiers points !</p>
+    <% end %>
+  </div>
   <div class='validation_progression'>
-  <h2>Tes progressions à valider :</h2>
-  <div class="my-3">
-    <% @challenges.each do |challenge| %>
-      <% if challenge.end_date > Date.yesterday %>
-        <% challenge.participations.each do |participation| %>
-          <% participation.progressions.each do |progression| %>
-            <% if progression.done == false && progression.date < Date.tomorrow %>
-              <% if participation.user_id == current_user.id %>
-                <div class="progression_card d-flex justify-content-center"
-                  data-controller="validate-progression"
-                  data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
-                  <div class="w-100 d-flex justify-content-between">
-                    <div class="body4 flex-grow-1">
-                      <h3><strong><%= challenge.title %></strong></h3>
-                      <p>Progression du <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
-                    </div>
+    <h2>Tes progressions à valider :</h2>
+    <div class="my-3">
+      <% @challenges.each do |challenge| %>
+        <% if challenge.end_date > Date.yesterday %>
+          <% challenge.participations.each do |participation| %>
+            <% participation.progressions.each do |progression| %>
+              <% if progression.done == false && progression.date < Date.tomorrow %>
+                <% if participation.user_id == current_user.id %>
+                  <div class="progression_card d-flex justify-content-center"
+                    data-controller="validate-progression"
+                    data-validate-progression-update-url-value="<%= done_progression_path(progression) %>">
+                    <div class="w-100 d-flex justify-content-between">
+                      <div class="body4 flex-grow-1">
+                        <h3><strong><%= challenge.title %></strong></h3>
+                        <p>Progression du <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
+                      </div>
                       <div class="d-flex align-items-center">
                         <button class="btn btn-valid btn-primary" data-action="click->validate-progression#validate">
                           <i class="fas fa-check"></i>
@@ -56,7 +62,6 @@
     <% end %>
   </div>
 </div>
-
 <div class="d-flex justify-content-center my-3" >
   <%= link_to "Crée un challenge!", new_challenge_path, class: "btn"%>
 </div>
