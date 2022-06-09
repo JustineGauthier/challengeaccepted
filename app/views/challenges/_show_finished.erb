@@ -1,0 +1,13 @@
+<div class='challenge-description my-4 d-flex flex-column align-items-center'>
+  <div class="mt-5 mb-2">
+    <h2 class="card-blue">"<%= @challenge.title %>" est terminé</h2>
+  </div>
+</div>
+  <div>
+    <h6 class="pb-3">Terminé depuis le <%= @challenge.end_date %>,<br>Durée totale : <%= @challenge.total_time %> jours.</h6>
+    <div class="card3 text-center my-4">
+      <p>🎉 Tu as effectué <%= @progression_count_current_user %> jours de challenge, et remporté <%= @total_points_count %> points! 🎉</p>
+    </div>
+  <p class="my-4"><em>Nostalgique ? Tu peux toujours recréer ce challenge, ou en inventer un autre <%= link_to "ici", new_challenge_path %>!<em></p>
+  </div>
+</div>
