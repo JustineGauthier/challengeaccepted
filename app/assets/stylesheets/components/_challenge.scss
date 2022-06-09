@@ -3,21 +3,56 @@
   text-align: center;
   box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
   border-radius: 20px;
-  padding: 8px;
+  padding: 16px;
+  margin: 9px 8px !important;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.card-blue {
+  font-size: x-large;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius: 20px;
+  padding: 16px;
   margin: auto;
+  background-color: #4F51AA;
+  color: white;
+  margin-top: revert;
+}
+
+.card-not-center {
+  width: 90%;
+  text-align: left;
+}
+
+img {
+  padding-bottom: 0px;
+}
+
+.card-under-blue {
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius: 20px;
+  padding: 16px;
+  margin: 15px 8px !important;
 }
 
 .top-show-challenge {
-  // width:375px;
   background-image: asset_url('top-challenge.svg');
   flex-grow: 1;
   height: 100%;
-  // height: 200px;
   border-radius: 30px,30px,0px,30px;
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: top;
-  // margin-top: -5px;
   margin: 0;
-  // text-align: center;
+}
+
+.container {
+  padding-right: 4px !important;
+  padding-left: 4px !important;
 }

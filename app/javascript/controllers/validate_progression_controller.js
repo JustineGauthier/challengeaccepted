@@ -37,6 +37,9 @@ export default class extends Controller {
         let p = document.createElement('p');
         p.textContent = "✨ Bien joué ✨";
         insertAfter(p, validBtn);
+
+
+
         validBtn.style.display = 'none';
         notValidBtn.style.display = 'none';
 
@@ -49,10 +52,5 @@ export default class extends Controller {
       setTimeout(congrat, 1000);
 
     })
-  }
-
-  nop(event) {
-    event.preventDefault()
-    this.element.remove();
   }
 }

@@ -1,23 +1,23 @@
-<div class="container">
-  <div class="top-show-user">
-    <div class="flexbox">
-      <div>
-        <%= cl_image_tag @user.photo.key, id: "avatar" %>
-      </div>
-      <div class="text-center" id="title">
-        <h1 class="title">CHALLENGE ACCEPTED</h1>
-      </div>
-      <div id="log-out">
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fas fa-sign-out-alt"></i>
-        <% end %>
-      </div>
+<div class="top-show-user">
+  <div class="flexbox">
+    <div>
+      <%= cl_image_tag @user.photo.key, id: "avatar" %>
     </div>
-    <div class="greeting">
-      <h2>Hey,</h2>
-      <h2><%= @user.name.capitalize %> !</h2>
+    <div class="text-center" id="title">
+      <h1 class="title">CHALLENGE ACCEPTED</h1>
+    </div>
+    <div id="log-out">
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="fas fa-sign-out-alt"></i>
+      <% end %>
     </div>
   </div>
+  <div class="greeting">
+    <h2>Hey,</h2>
+    <h2><%= @user.name.capitalize %> !</h2>
+  </div>
+</div>
+<div class="container">
   <div class="d-flex flex-column text-center points">
     <p>🏆</p>
     <p><strong><%= @user.total_points %></strong> points</p>
@@ -45,42 +45,39 @@
                         <p>Progression du <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
                       </div>
                       <div class="d-flex align-items-center">
-                        <button class="btn btn-valid btn-primary" data-modal-target="#modal" data-action="click->validate-progression#validate">
+                        <button class="btn btn-valid btn-primary" data-action="click->validate-progression#validate">
                           <i class="fas fa-check"></i>
                         </button>
-                        <button class="btn btn-not-valid btn-primary ms-2" data-action="click->validate-progression#nop">
+                        <%= link_to progression_path(progression), class: 'btn btn-not-valid btn-primary', method: :delete do %>
                           <i class="fas fa-times"></i>
-                        </button>
+                        <% end %>
                       </div>
-                    </div>
                   </div>
-                <% end %>
+                </div>
               <% end %>
             <% end %>
           <% end %>
         <% end %>
       <% end %>
-    </div>
+    <% end %>
   </div>
-
-  <div class="d-flex justify-content-center my-3" >
-    <%= link_to "Crée un challenge!", new_challenge_path, class: "btn"%>
-  </div>
-  <div>
-    <h2>Tes challenges en cours:</h2>
-    <div class="scroll">
-      <% @challenges.each do |challenge| %>
-        <% if challenge.end_date > Date.yesterday %>
-          <div class="card2" >
-              <% time_left = (challenge.end_date - Date.today).to_i %>
-
-                  <div class="card-body">
-                    <%= link_to challenge_path(challenge) do %>
-                      <h3><strong><%= challenge.title %></strong></h3>
-                      <div>Se termine dans : <%= time_left %> jours</div>
-                    <% end %>
-                  </div>
-
+</div>
+<div class="d-flex justify-content-center my-3" >
+  <%= link_to "Crée un challenge!", new_challenge_path, class: "btn"%>
+</div>
+<div>
+  <h2>Tes challenges en cours:</h2>
+  <div class="scroll">
+    <% @challenges.each do |challenge| %>
+      <% if challenge.end_date > Date.yesterday %>
+        <div class="card2" >
+           <% time_left = (challenge.end_date - Date.today).to_i %>
+            <div class="card-body">
+              <%= link_to challenge_path(challenge) do %>
+                <h3><strong><%= challenge.title %></strong></h3>
+                <div>Se termine dans : <%= time_left %> jours</div>
+              <% end %>
+            </div>
           </div>
         <% end %>
       <% end %>
