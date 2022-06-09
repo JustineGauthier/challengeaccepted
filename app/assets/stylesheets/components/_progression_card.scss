@@ -1,5 +1,4 @@
 .progression_card {
-  box-shadow: 0 0 10px 4px rgba(0,0,0,0.08);
   background-color: #F4F5FE;
   border-radius: 15px;
   font-size: 14px;
@@ -7,11 +6,12 @@
   margin: 10px 6px;
 }
 
-.progression_card fas {
+.progression_card button, .btn-valid, .btn-not-valid {
   color: white;
-  width: 10vw;
-  font-size: 14px;
-  padding: 5px;
+  background-color: #5052a7;
+  // border: 3px solid #ff91a4;
+  width: 32px;
+  height: 32px;
 }
 
 .progression_card h3 {
@@ -20,4 +20,9 @@
 
 .body4 {
   line-height: 0px;
+}
+
+.btn-go .btn {
+  background-color: #5052a7;
+
 }
