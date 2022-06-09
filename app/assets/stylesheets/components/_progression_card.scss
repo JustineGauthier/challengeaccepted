@@ -2,8 +2,8 @@
   background-color: #F4F5FE;
   border-radius: 15px;
   font-size: 14px;
-  padding: 4px 24px;
-  margin: 10px 6px;
+  padding: 12px 24px;
+  margin: 15px 16px;
 }
 
 .progression_card button, .btn-valid, .btn-not-valid {
@@ -25,4 +25,9 @@
 .btn-go .btn {
   background-color: #5052a7;
 
+}
+
+.validation-progression {
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
