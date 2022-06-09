@@ -1,15 +1,16 @@
 <div class='challenge-description my-5 d-flex flex-column align-items-center'>
   <div class="mt-5 mb-2">
-      <h2 id="title", class="card-blue" data-challenge="<%= @challenge.title %>">
-        "<%= @challenge.title %>" est prêt à être lancé!
-      </h2>
+      <h1 id="title", class="card-blue" data-challenge="<%= @challenge.title %>">
+        "<%= @challenge.title %>" en préparation...
+      </h1>
   </div>
   <div class="card-not-center mt-4">
     <p
       id="debut"
       data-challenge-debut="<%= @challenge.total_time %>"
       data-challenge-time-left="<%= @time_left %>">
-      Début: <em><%= @challenge.start_date %></em>,<br><strong>Durée:</strong> <%= @challenge.total_time %> jours.
+      <strong>Début:</strong> <%= ConvertDate.new(date: @challenge.start_date.strftime('%a %d %b')).call %>.
+      <br><strong>Durée:</strong> <%= @challenge.total_time %> jours.
     </p>
   </div>
   <% if current_user == @creator %>
@@ -42,9 +43,9 @@
       </div>
     </div>
   <% end %>
-  <div class="card3 my-3">
+  <div class="card3 my-3  class="d-flex justify-content-around">
     <h5>Participant·e·s inscrits:</h5>
-    <p class="pb-2"><em>Tout le monde est la? Lance le challenge!</em></p>
+    <p class="pb-2"><em>Tout le monde est la?</em></p>
     <% @users.each do |user| %>
       <ul class="text-left in-line">
         <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill, id:"avatar" %> <strong><%= user.name %></strong></li>
@@ -56,7 +57,7 @@
       <div data-controller="started"
         data-started-update-url-value="<%=  started_challenge_path(@challenge) %>">
         <button id="launch2" class="btn mt-2 btn-primary" data-action="click->started#status">
-          C'est parti !🚀
+          C'est parti !
         </button>
       </div>
     <% end %>

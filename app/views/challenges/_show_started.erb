@@ -1,8 +1,8 @@
 <div class='challenge-description mt-5 d-flex flex-column align-items-center'>
   <div class="mt-5 mb-2">
-    <h1 class="card-blue">"<%= @challenge.title.capitalize %>" est lancé!</h1>
+    <h1 class="card-blue">"<%= @challenge.title.capitalize %>" est lancé !</h1>
   </div>
-  <div class="card-under-blue my-5">
+  <div class="cards-color card-under-blue my-5">
     <p> Wouhou! Tu participes actuellement à ce challenge !</p>
     <i class="fas fa-rocket i1"></i>
     <i class="fas fa-rocket i2"></i>
@@ -10,31 +10,22 @@
     <p class="text-center my-2"><strong>Date de fin:</strong> <%= ConvertDate.new(date: @challenge.end_date.strftime('%a %d %b')).call %>.</p>
     <p>Il te reste <%= @time_left %> jours pour te surpasser!</p>
   </div>
-  <p class="blockquote mt-2">"<%= @challenge.description %>"</p>
-  <div class="card4 text-center my-4">
-    <h5>Tous les participant·e·s</h5>
-    <ul class="text-left">
+  <div class="challenge-description">
+    <p>"<%= @challenge.description %>"</p>
+  </div>
+  <div class="cards-color card4 text-center my-4">
+    <h5>Tou·te·s les participant·e·s</h5>
+    <ul class="d-flex justify-content-around">
       <% @users.each do |user| %>
-        <li><%= cl_image_tag user.photo.key, id:"avatar" %></li>
-        <li><small><%= user.name.capitalize %></small></li>
-        <li>
-          <% @participations.each do |participation| %>
-            <% if participation.user_id == user.id %>
-              <% @progression_count = 0 %>
-
-              <% participation.progressions.each do |progression| %>
-                <% if progression.done %>
-                  <% @progression_count += progression.points %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </li>
+        <div class="d-flex flex-column justify-content-center">
+          <li><%= cl_image_tag user.photo.key, id:"avatar" %></li>
+          <li><small><%= user.name.capitalize %></small></li>
+        </div>
       <% end %>
     </ul>
   </div>
 
-  <ul class="mb-0">
+  <div class="bottom-challenge">
     <% @participations.each do |participation| %>
         <% @progression_count = 0 %>
         <% participation.progressions.each do |progression| %>
@@ -42,14 +33,22 @@
             <% @progression_count += 1 %>
           <% end %>
         <% end %>
-      <div class="bottom-challenge pb-2 pt-5">
-        <h5 class="text-white text-center pt-4 pb-3">Progressions</h5>
+      <div class="pt-5">
+        <h5 class="text-white text-center pt-3 pb-3">Progressions</h5>
         <% ratio = @progression_count*100/@challenge.total_time%>
-        <div class="back-blue">
-        <small class="mb-0 text-left mr-4"><%= participation.user.name.capitalize %></small>
-          <span class="pr-2"><%= image_tag "#{ratio.round(-1)}.svg" %></span>
+        <div class="back-blue w-100">
+          <div class="d-flex justify-content-between">
+            <div class="flex-grow-1 text-end pe-3">
+              <p><%= participation.user.name.capitalize %></p>
+            </div>
+            <div class="me-5">
+              <span><%= image_tag "#{ratio.round(-1)}.svg" %></span>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="back-blue w-100 pb-4">
+      </div>
     <% end %>
-  </ul>
+  </div>
 </div>
