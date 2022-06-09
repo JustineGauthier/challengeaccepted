@@ -19,7 +19,7 @@
 </div>
 <div class="container">
   <div class="d-flex flex-column text-center points">
-    <p>🏆</p>
+    <i class="fas fa-trophy"></i>
     <p><strong><%= @user.total_points %></strong> points</p>
     <% if @user.total_points.positive? %>
       <p>Wow, tu te surpasses!</p>
@@ -45,12 +45,14 @@
                         <p>Progression du <%= ConvertDate.new(date: progression.date.strftime('%a %d %b')).call %></p>
                       </div>
                       <div class="d-flex align-items-center">
-                        <button class="btn btn-valid btn-primary" data-action="click->validate-progression#validate">
-                          <i class="fas fa-check"></i>
+                        <button class="btn btn-valid" data-action="click->validate-progression#validate">
+                          <i class="fas fa-check d-flex justify-content-center"></i>
                         </button>
-                        <%= link_to progression_path(progression), class: 'btn btn-not-valid btn-primary', method: :delete do %>
-                          <i class="fas fa-times px-1"></i>
-                        <% end %>
+                        <div class="ms-2">
+                          <%= link_to progression_path(progression), class: 'btn btn-not-valid', method: :delete do %>
+                            <i class="fas fa-times d-flex justify-content-center"></i>
+                          <% end %>
+                        </div>
                       </div>
                   </div>
                 </div>
@@ -62,7 +64,7 @@
     <% end %>
   </div>
 </div>
-<div class="d-flex justify-content-center my-3" >
+<div class="d-flex justify-content-center my-3  btn-go" >
   <%= link_to "Crée un challenge!", new_challenge_path, class: "btn"%>
 </div>
 <div>
