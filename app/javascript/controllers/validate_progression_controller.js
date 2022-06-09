@@ -30,7 +30,7 @@ export default class extends Controller {
     .then(response => {
 
       // Mettre à jour le contenu du bouton
-      validBtn.textContent = 'Validation en cours...';
+      // validBtn.textContent = 'Validation en cours...';
 
       // Afficher des infos au niveau du challenge après 1s
       const congrat = () => {
