@@ -8,7 +8,7 @@
             <% if @challenge.end_date < Date.today %>
               <div class='challenge-description my-4 d-flex flex-column align-items-center'>
                 <div class="mt-5 mb-2">
-                  <h2 class="card-blue">"<%= @challenge.title %>" est inactif</h2>
+                  <h2 class="card-blue">"<%= @challenge.title %>" est terminé</h2>
                 </div>
               </div>
                 <div>
@@ -18,10 +18,19 @@
                   </div>
                 <p class="my-4"><em>Nostalgique ? Tu peux toujours recréer ce challenge, ou en inventer un autre <%= link_to "ici", new_challenge_path %>!<em></p>
                 </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="top-show-challenge">
+  <div class="mx-3">
+    <div class="col-12 d-flex">
+      <div class="container">
 
             <%# CAS: challenge lancé, en cours %>
             <% else %>
-              <div class='challenge-description my-5 d-flex flex-column align-items-center'>
+              <div class='challenge-description mt-5 d-flex flex-column align-items-center'>
                 <div class="mt-5 mb-2">
                   <h1 class="card-blue">"<%= @challenge.title.capitalize %>" est lancé!</h1>
                 </div>
@@ -34,8 +43,7 @@
                   <p>Il te reste <%= @time_left %> jours pour te surpasser!</p>
                 </div>
                 <p class="blockquote mt-2">"<%= @challenge.description %>"</p>
-                <figcaption class="blockquote-footer text-right"><%= @creator.name %></figcaption>
-                <div class="card3 text-center my-4">
+                <div class="card4 text-center my-4">
                   <h5>Tous les participant·e·s</h5>
                   <ul class="text-left">
                     <% @users.each do |user| %>
@@ -57,10 +65,14 @@
                     <% end %>
                   </ul>
                 </div>
-                <div class="card3">
-                  <h5>Progressions</h5>
-                  <div class="card-not-center my-4">
-                    <ul>
+      </div>
+    </div>
+  </div>
+</div>
+                <%# <div class="card-under_blue"> %>
+                <%# </div> %>
+                  <%# <div class="card-not-center my-4"> %>
+                    <ul class="mb-0">
                       <% @participations.each do |participation| %>
                           <% @progression_count = 0 %>
                           <% participation.progressions.each do |progression| %>
@@ -68,17 +80,24 @@
                               <% @progression_count += 1 %>
                             <% end %>
                           <% end %>
-                        <div>
+                        <div class="bottom-challenge pb-2 pt-5">
+                          <h5 class="text-white text-center pt-4 pb-3">Progressions</h5>
                           <% ratio = @progression_count*100/@challenge.total_time%>
-                          <small class="mb-0 text-left"><%= participation.user.name %>: <%= @progression_count %> jours</small>
-                          <%= image_tag "#{ratio.round(-1)}.svg", class:"mb-3" %><br>
+                          <div class="mb-4">
+                          <small class="mb-0 text-left mr-4"><%= participation.user.name %>: <%= @progression_count %> j </small>
+                            <span class="pr-2"><%= image_tag "#{ratio.round(-1)}.svg" %></span>
+                          </div>
                         </div>
                       <% end %>
                     </ul>
-                  </div>
-                </div>
+                  <%# </div> %>
               </div>
             <% end %>
+
+<div class="top-show-challenge">
+  <div class="mx-3">
+    <div class="col-12 d-flex">
+      <div class="container">
 
           <%# CAS: challenge prêt à être lancé, invitation amis ! FIXER le bouton accueil %>
           <% else %>
@@ -98,7 +117,6 @@
               </div>
                 <% if current_user == @creator %>
                   <p>"<%= @challenge.description %>"</p>
-                  <figcaption class="blockquote-footer text-right"><%= @creator.name %></figcaption>
 
                   <div class="card3 text-center my-4"
                     data-controller="share"
