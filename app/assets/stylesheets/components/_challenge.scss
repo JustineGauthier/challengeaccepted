@@ -10,6 +10,16 @@
   }
 }
 
+.card4 {
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius: 20px;
+  padding: 16px;
+  padding-bottom: 6px !important;
+  margin: 0px 8px !important;
+}
+
 .card-blue {
   font-size: x-large;
   width: 80%;
@@ -30,6 +40,7 @@
 
 img {
   padding-bottom: 0px;
+  // margin-bottom: 0px !important;
 }
 
 .card-under-blue {
@@ -42,7 +53,7 @@ img {
 }
 
 .top-show-challenge {
-  background-image: asset_url('top-challenge.svg');
+  background-image: asset_url('top-challenge2.svg');
   flex-grow: 1;
   height: 100%;
   border-radius: 30px,30px,0px,30px;
@@ -50,6 +61,17 @@ img {
   background-size: 100%;
   background-position: top;
   margin: 0;
+}
+
+.bottom-challenge {
+  background-image: asset_url('bottom-challenge.svg');
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  background-position: top;
+
+  padding: 8px;
+  color: white;
 }
 
 .container {
