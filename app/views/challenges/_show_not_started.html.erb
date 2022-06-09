@@ -47,7 +47,7 @@
     <p class="pb-2"><em>Tout le monde est la? Lance le challenge!</em></p>
     <% @users.each do |user| %>
       <ul class="text-left in-line">
-        <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill, id:"avatar" %> <strong><%= user.name %></strong></li>
+        <li><%= cl_image_tag user.photo.key, height: 200, width: 200, crop: :fill, class:"avatar2" %> <strong><%= user.name %></strong></li>
       </ul>
     <% end %>
 

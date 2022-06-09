@@ -11,6 +11,20 @@
   margin: 10px 5px 10px 5px;
 }
 
+.card-finish {
+  flex-shrink: 0;
+  width:40vw;
+  height:40vw;
+  text-align: left;
+  line-height: 12px;
+  box-shadow: 0 0 10px 4px rgba(0,0,0,0.08);
+  border-radius: 30px;
+  background-image: asset_url('back_card_finish.jpg');
+  background-size: cover;
+  margin: 10px 5px 10px 5px;
+}
+
+
 #challenge-frequency {
   text-align: center;
   padding: 8px;
@@ -24,7 +38,7 @@
 }
 
 .card-body {
-  font-size: 13px;
+  font-size: 15px;
   padding-top: 56px;
 }
 

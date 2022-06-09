@@ -30,15 +30,13 @@ export default class extends Controller {
     .then(response => {
 
       // Mettre à jour le contenu du bouton
-      // validBtn.textContent = 'Validation en cours...';
+      // validBtn.textContent = <i class="fas fa-rocket i3"></i>;
 
       // Afficher des infos au niveau du challenge après 1s
       const congrat = () => {
         let p = document.createElement('p');
         p.textContent = "✨ Bien joué ✨";
         insertAfter(p, validBtn);
-
-
 
         validBtn.style.display = 'none';
         notValidBtn.style.display = 'none';
