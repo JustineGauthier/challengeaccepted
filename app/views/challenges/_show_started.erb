@@ -45,8 +45,8 @@
       <div class="bottom-challenge pb-2 pt-5">
         <h5 class="text-white text-center pt-4 pb-3">Progressions</h5>
         <% ratio = @progression_count*100/@challenge.total_time%>
-        <div class="mb-4">
-        <small class="mb-0 text-left mr-4"><%= participation.user.name %>: <%= @progression_count %> j </small>
+        <div class="back-blue">
+        <small class="mb-0 text-left mr-4"><%= participation.user.name.capitalize %></small>
           <span class="pr-2"><%= image_tag "#{ratio.round(-1)}.svg" %></span>
         </div>
       </div>
