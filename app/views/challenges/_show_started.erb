@@ -15,7 +15,7 @@
     <h5>Tous les participant·e·s</h5>
     <ul class="text-left">
       <% @users.each do |user| %>
-        <li><%= cl_image_tag user.photo.key, id:"avatar" %></li>
+        <li><%= cl_image_tag user.photo.key, class:"avatar2" %></li>
         <li><small><%= user.name.capitalize %></small></li>
         <li>
           <% @participations.each do |participation| %>

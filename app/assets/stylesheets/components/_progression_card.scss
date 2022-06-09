@@ -14,20 +14,35 @@
   height: 32px;
 }
 
+.centered {
+  margin: auto;
+}
+
 .progression_card h3 {
   font-size: 16px;
 }
 
 .body4 {
-  line-height: 0px;
+  line-height: 0.8;
 }
 
 .btn-go .btn {
   background-color: #5052a7;
-
 }
 
 .validation-progression {
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+.dark-font {
+  color: black;
+}
+
+.text-larger {
+  font-size: larger;
+}
+
+.no-margin {
+  margin-bottom: 2px;
 }
