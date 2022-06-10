@@ -11,7 +11,7 @@ export default class extends Controller {
   }
 
   shareLink() {
-    const url = `https://challenge-accepted-854.herokuapp.com//challenges/${this.idValue}/join`
+    const url = `https://www.challengeaccepted.live/challenges/${this.idValue}/join`
 
     const options = {
       title: this.titleValue,
