@@ -16,12 +16,12 @@
   <% if current_user == @creator %>
     <p>"<%= @challenge.description %>"</p>
 
-    <div class="card3 text-center my-4"
+    <div class="cards-color card3 text-center my-4"
       data-controller="share"
       data-share-id-value= <%= @challenge.id %>
       data-share-title-value= <%= @challenge.title %>
       data-share-creator-value= <%= @creator.name %>>
-        <p class="pb-3">T'es prêt à récolter des points et défier tes potes?</p>
+        <p class="pb-3">Prêt à récolter des points et défier tes potes?</p>
         <p class= "btn btn-primary" data-action="click->share#shareLink"> Partage ton lien! </p>
     </div>
   <% else %>
@@ -43,9 +43,8 @@
       </div>
     </div>
   <% end %>
-  <div class="card3 my-3  class="d-flex justify-content-around">
-    <h5>Participant·e·s inscrits:</h5>
-    <p class="pb-2"><em>Tout le monde est la?</em></p>
+  <div class="cards-color card3 my-3  class="d-flex justify-content-around">
+    <h5>Participant·e·s inscrit·e·s:</h5>
     <ul class="d-flex justify-content-around">
       <% @users.each do |user| %>
         <div class="d-flex flex-column justify-content-center">
