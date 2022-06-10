@@ -1,5 +1,5 @@
 meta_product_name: "Challenge Accepted"
 meta_title: "Challenge-accepted - Your goals become a game!"
 meta_description: "Challenge tes amis à essayer des nouvelles expériences et sortez de votre zone de confort tout en vous amusant !"
-meta_image: "challenge-accepted.png" # should exist in `app/assets/images/`
+meta_image: "cover.png" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards
